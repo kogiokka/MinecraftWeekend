@@ -1,5 +1,9 @@
 bin/game
 
+# IDE
+
+*.kdev4
+
 *.icloud
 .DS_Store
 .vscode
