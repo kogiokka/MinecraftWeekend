@@ -1,7 +1,8 @@
 bin/game
+[Bb]uild
+[Oo]ut
 
 # IDE
-
 *.kdev4
 
 *.icloud
