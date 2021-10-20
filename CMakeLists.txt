@@ -13,6 +13,11 @@ set(CMAKE_USE_PTHREADS_INIT 1)
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 
 find_package(OpenGL REQUIRED)
+
+option(CGLM_STATIC "CGLM static build" ON)
+option(CGLM_SHARED "CGLM shared build" OFF)
+option(GLFW_BUILD_DOCS "GLFW documentation" OFF)
+option(GLFW_BUILD_INSTALL "GLFW installation target" OFF)
 add_subdirectory(lib/cglm)
 add_subdirectory(lib/glfw)
 
