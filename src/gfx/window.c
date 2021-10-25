@@ -12,6 +12,10 @@ static void _size_callback(GLFWwindow *handle, int width, int height) {
 }
 
 static void _cursor_callback(GLFWwindow *handle, double xp, double yp) {
+    if (!mouse_get_grabbed()) {
+        return;
+    }
+
     vec2s p = {{xp, yp}};
 
     window.mouse.delta = glms_vec2_sub(p, window.mouse.position);

@@ -90,8 +90,8 @@ void update() {
         state.renderer.flags.wireframe = !state.renderer.flags.wireframe;
     }
 
-    // mouse toggle (ESC)
-    if (keys[GLFW_KEY_ESCAPE].pressed) {
+    // mouse toggle (TAB)
+    if (keys[GLFW_KEY_TAB].pressed) {
         mouse_set_grabbed(!mouse_get_grabbed());
     }
 
