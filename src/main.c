@@ -82,14 +82,23 @@ void update() {
     world_update(&state.world);
     ui_update(&state.ui);
 
+    const struct Button* const keys = state.window->keyboard.keys;
+    const int mods = state.window->keyboard.mods;
+
     // wireframe toggle (T)
-    if (state.window->keyboard.keys[GLFW_KEY_T].pressed) {
+    if (keys[GLFW_KEY_T].pressed) {
         state.renderer.flags.wireframe = !state.renderer.flags.wireframe;
     }
 
     // mouse toggle (ESC)
-    if (state.window->keyboard.keys[GLFW_KEY_ESCAPE].pressed) {
+    if (keys[GLFW_KEY_ESCAPE].pressed) {
         mouse_set_grabbed(!mouse_get_grabbed());
+    }
+
+    if (keys[GLFW_KEY_Q].pressed ) {
+        if (mods & GLFW_MOD_CONTROL) {
+            glfwSetWindowShouldClose(state.window->handle, GL_TRUE);
+        }
     }
 }
 

@@ -16,6 +16,7 @@ struct Mouse {
 
 struct Keyboard {
     struct Button keys[GLFW_KEY_LAST];
+    int mods;
 };
 
 typedef void (*FWindow)();

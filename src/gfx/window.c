@@ -26,6 +26,8 @@ static void _key_callback(GLFWwindow *handle, int key, int scancode, int action,
         return;
     }
 
+    window.keyboard.mods = mods;
+
     switch (action) {
         case GLFW_PRESS:
             window.keyboard.keys[key].down = true;
