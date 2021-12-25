@@ -14,42 +14,8 @@ set_target_properties(game
 )
 
 find_package(OpenGL REQUIRED)
-
-set(cglm_SOURCE_DIR "${CMAKE_SOURCE_DIR}/lib/cglm")
-set(glfw_SOURCE_DIR "${CMAKE_SOURCE_DIR}/lib/glfw")
-
-include(FetchContent)
-
-FetchContent_Declare(
-    cglm
-    GIT_REPOSITORY "https://github.com/recp/cglm.git"
-    GIT_TAG "34e5704fe88da1e277ef4ab6c498eacfa464a391" # v0.8.4
-    SOURCE_DIR "${cglm_SOURCE_DIR}"
-    GIT_PROGRESS ON
-)
-FetchContent_Declare(
-    glfw
-    GIT_REPOSITORY "https://github.com/glfw/glfw.git"
-    GIT_TAG "7d5a16ce714f0b5f4efa3262de22e4d948851525" # tag 3.3.6
-    SOURCE_DIR "${glfw_SOURCE_DIR}"
-    GIT_PROGRESS ON
-)
-
-option(CGLM_STATIC "CGLM static build" ON)
-option(CGLM_SHARED "CGLM shared build" OFF)
-option(GLFW_BUILD_DOCS "GLFW documentation" OFF)
-option(GLFW_BUILD_EXAMPLES "GLFW examples" OFF)
-option(GLFW_BUILD_TESTS "GLFW tests" OFF)
-option(GLFW_BUILD_INSTALL "GLFW installation target" OFF)
-
-set(FETCHCONTENT_QUIET FALSE)
-if (EXISTS ${cglm_SOURCE_DIR})
-    set(FETCHCONTENT_SOURCE_DIR_CGLM ${cglm_SOURCE_DIR})
-endif()
-if (EXISTS ${glfw_SOURCE_DIR})
-    set(FETCHCONTENT_SOURCE_DIR_GLFW ${glfw_SOURCE_DIR})
-endif()
-FetchContent_MakeAvailable(cglm glfw)
+include(cmake/FetchCGLM.cmake)
+include(cmake/FetchGLFW.cmake)
 
 if (CMAKE_C_COMPILER_ID STREQUAL "GNU")
     list(APPEND CompilerFlags -Wall -Wextra -Wpedantic)
