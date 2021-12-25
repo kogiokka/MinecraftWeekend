@@ -16,7 +16,7 @@ set_target_properties(game
 find_package(OpenGL REQUIRED)
 
 include(FetchContent)
-
+set(FETCHCONTENT_QUIET OFF)
 FetchContent_Declare(
     cglm
     GIT_REPOSITORY "https://github.com/recp/cglm.git"
