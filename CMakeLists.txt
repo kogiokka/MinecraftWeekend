@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
 project("minecraft-weekend" VERSION 0.1.0)
 
@@ -15,12 +15,33 @@ set_target_properties(game
 
 find_package(OpenGL REQUIRED)
 
+include(FetchContent)
+
+FetchContent_Declare(
+    cglm
+    GIT_REPOSITORY "https://github.com/recp/cglm.git"
+    GIT_TAG "34e5704fe88da1e277ef4ab6c498eacfa464a391" # v0.8.4
+    GIT_PROGRESS ON
+)
+FetchContent_Declare(
+    glfw
+    GIT_REPOSITORY "https://github.com/glfw/glfw.git"
+    GIT_TAG "7d5a16ce714f0b5f4efa3262de22e4d948851525" # tag 3.3.6
+    GIT_PROGRESS ON
+)
+
 option(CGLM_STATIC "CGLM static build" ON)
 option(CGLM_SHARED "CGLM shared build" OFF)
 option(GLFW_BUILD_DOCS "GLFW documentation" OFF)
+option(GLFW_BUILD_EXAMPLES "GLFW examples" OFF)
+option(GLFW_BUILD_TESTS "GLFW tests" OFF)
 option(GLFW_BUILD_INSTALL "GLFW installation target" OFF)
-add_subdirectory(lib/cglm)
-add_subdirectory(lib/glfw)
+FetchContent_MakeAvailable(cglm glfw)
+
+#option(CGLM_STATIC "CGLM static build" ON)
+option(CGLM_SHARED "CGLM shared build" OFF)
+option(GLFW_BUILD_DOCS "GLFW documentation" OFF)
+option(GLFW_BUILD_INSTALL "GLFW installation target" OFF)
 
 if (CMAKE_C_COMPILER_ID STREQUAL "GNU")
     list(APPEND CompilerFlags -Wall -Wextra -Wpedantic)
