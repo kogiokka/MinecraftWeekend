@@ -95,3 +95,5 @@ add_custom_command(TARGET game POST_BUILD
     COMMENT "Creating symlink to project resources..."
     VERBATIM
 )
+
+include(CMakeCPack.cmake)
