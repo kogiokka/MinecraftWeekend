@@ -21,12 +21,14 @@ FetchContent_Declare(
     cglm
     GIT_REPOSITORY "https://github.com/recp/cglm.git"
     GIT_TAG "34e5704fe88da1e277ef4ab6c498eacfa464a391" # v0.8.4
+    SOURCE_DIR "${CMAKE_SOURCE_DIR}/lib/cglm"
     GIT_PROGRESS ON
 )
 FetchContent_Declare(
     glfw
     GIT_REPOSITORY "https://github.com/glfw/glfw.git"
     GIT_TAG "7d5a16ce714f0b5f4efa3262de22e4d948851525" # tag 3.3.6
+    SOURCE_DIR "${CMAKE_SOURCE_DIR}/lib/glfw"
     GIT_PROGRESS ON
 )
 

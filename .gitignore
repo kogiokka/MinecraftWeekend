@@ -2,6 +2,10 @@ bin/game
 [Bb]uild
 [Oo]ut
 
+# CMake FetchContent SOURCE_DIR
+lib/cglm
+lib/glfw
+
 # IDE
 *.kdev4
 
