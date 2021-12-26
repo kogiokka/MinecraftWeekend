@@ -1,10 +1,10 @@
-# Minecraft, but I made it in 48 hours*
+# Minecraft Weekend
 
-\* I've actually updated it since - [see this commit for the 48 hour version](https://github.com/jdah/minecraft-weekend/tree/cb19738305804b5734faa7118c1c784f26ff9463).
+This repo is a fork of [jdah's minecraft-weekend](https://github.com/jdah/minecraft-weekend/tree/387ecb554946180094d58c57a4ee216dba506cc4) for me to learn game programming and tinker with project management.
 
 ![screenshot](screenshots/1.png)
 
-#### Features:
+## Features
 - Infinite, procedurally generated world
 - Infinite height/depth
 - Day/night cycle
@@ -18,27 +18,51 @@
 - A whole lot of different block types
 - More
 
-#### Building
+## Prerequisites
 
-##### Unix-like
-`$ git clone --recurse-submodules https://github.com/jdah/minecraft-weekend.git`\
-`$ make`
+This project requires `CMake` and `git` to manage dependencies and build:
 
-The following static libraries under `lib/` must be built before the main project can be built:
+Ubuntu/Debian
+```sh
+sudo apt-get install cmake git
+```
 
-- GLAD `lib/glad/src/glad.o`
-- CGLM `lib/cglm/.libs/libcglm.a`
-- GLFW `lib/glfw/src/libglfw3.a`
-- libnoise `lib/noise/libnoise.a`
+Fedora/CentOS
+```sh
+sudo dnf install cmake git
+```
 
-All of the above have their own Makefile under their respective subdirectory and can be built with `$ make libs`.
-If libraries are not found, ensure that submodules have been cloned.
+This project uses the following external libraries:
 
-The game binary, once built with `$ make`, can be found in `./bin/`.
+ * `GLFW>=3.36`
+ * `cglm>=0.8.4`
+ * `glad`
+ * `noise1234`
+ * `stb_image`
 
-*Be sure* to run with `$ ./bin/game` out of the root directory of the repository.
-If you are getting "cannot open file" errors (such as "cannot find ./res/shaders/*.vs"), this is the issue. 
+`GLFW` and `cglm` will be downloaded to `lib/` with CMake `FetchContent` at the first run.
+The rest of the libraries have been integrated into this repo under `lib/`, no extra steps to acquire them.
 
-##### Windows
+## Build
+### Unix-like
 
-good luck 🤷‍♂️ probably try building under WSL and using an X environment to pass graphics through.
+```sh
+# Change working directory to project root
+cd MinecraftWeekend/;
+
+# Debug build
+cmake -B build/Debug \
+      -D CMAKE_BUILD_TYPE=Debug;
+cmake --build build/Debug;
+
+# Release build
+cmake -B build/Release \
+      -D CMAKE_BUILD_TYPE=Release;
+cmake --build build/Release;
+```
+
+The `game` binary can be found in `build/<Debug|Release>` once `cmake --build` is finished.
+
+### Windows
+
+Not yet tested. Currently, the source code contains C dialect only available to compile with GCC and Clang.
