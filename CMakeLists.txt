@@ -4,6 +4,7 @@ project("minecraft-weekend" VERSION 0.1.0)
 
 add_executable(game)
 add_library(glad STATIC)
+add_library(stb_image STATIC)
 add_library(noise1234 STATIC)
 
 set_target_properties(game
@@ -45,19 +46,23 @@ message(STATUS "\tC Compiler:             ${CMAKE_C_COMPILER_ID} ${CMAKE_C_COMPI
 message(STATUS "\tC Compiler Path:        ${CMAKE_C_COMPILER}")
 message(STATUS)
 
-target_include_directories(game PRIVATE "lib/stb")
+target_include_directories(game PRIVATE "")
+
 target_include_directories(glad PUBLIC "lib/glad/include")
+target_include_directories(stb_image PUBLIC "lib/stb")
 target_include_directories(noise1234 PUBLIC "lib/noise")
 
 file(GLOB_RECURSE SourceFiles CONFIGURE_DEPENDS "src/*.c")
 target_sources(game PRIVATE ${SourceFiles})
 target_sources(glad PRIVATE "lib/glad/src/glad.c")
+target_sources(stb_image PRIVATE "lib/stb/stb_image.c")
 target_sources(noise1234 PRIVATE "lib/noise/noise1234.c")
 
 target_link_libraries(game PRIVATE
     cglm
     glfw
     glad
+    stb_image
     noise1234
     OpenGL::GL
 )
