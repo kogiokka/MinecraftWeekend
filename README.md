@@ -22,6 +22,8 @@ This repo is a fork of [jdah's minecraft-weekend](https://github.com/jdah/minecr
 
 This project requires `CMake` and `git` to manage dependencies and build:
 
+### Linux
+
 Ubuntu/Debian
 ```sh
 sudo apt-get install cmake git
@@ -32,7 +34,11 @@ Fedora/CentOS
 sudo dnf install cmake git
 ```
 
-This project uses the following external libraries:
+### Windows
+
+Rquire MinGW, MSVC is not supportd. Check out [TDM GCC](https://jmeubank.github.io/tdm-gcc/).
+
+### External Libraries
 
  * `GLFW>=3.36`
  * `cglm>=0.8.4`
@@ -44,7 +50,6 @@ This project uses the following external libraries:
 The rest of the libraries have been integrated into this repo under `lib/`, no extra steps to acquire them.
 
 ## Build
-### Unix-like
 
 ```sh
 # Change working directory to project root
@@ -63,6 +68,3 @@ cmake --build build/Release;
 
 The `game` binary can be found in `build/<Debug|Release>` once `cmake --build` is finished.
 
-### Windows
-
-Not yet tested. Currently, the source code contains C dialect only available to compile with GCC and Clang.
