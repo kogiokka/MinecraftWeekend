@@ -173,7 +173,7 @@ void window_loop() {
             window.ticks = 0;
             window.last_second = now;
 
-            printf("FPS: %lld | TPS: %lld\n", window.fps, window.tps);
+            printf("FPS: %lu | TPS: %lu\n", window.fps, window.tps);
         }
 
         // tick processing
