@@ -27,9 +27,7 @@ elseif (CMAKE_C_COMPILER_ID STREQUAL "Clang")
     list(APPEND CompileOptions_Debug)
     list(APPEND CompileOptions_Release)
 elseif (CMAKE_C_COMPILER_ID STREQUAL "MSVC")
-    list(APPEND CompileOptions /permissive-)
-    list(APPEND CompileOptions_Debug)
-    list(APPEND CompileOptions_Release)
+    message(FATAL_ERROR "MSVC is not supported. Use MinGW on MS Windows instead.")
 endif()
 
 target_compile_options(game PRIVATE ${CompileOptions})
@@ -66,6 +64,12 @@ target_link_libraries(game PRIVATE
     noise1234
     OpenGL::GL
 )
+
+if(MINGW)
+    # This is a workaround.
+    # TODO: Improve the world_foreach_* functions in src/world/world.c
+    target_link_options(game PRIVATE "LINKER:--stack,4194304")
+endif()
 
 # NOTE: Turn on Developer Mode on MS Windows for symbolic links
 add_custom_command(TARGET game POST_BUILD
