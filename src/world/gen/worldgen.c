@@ -5,10 +5,10 @@
 #include "../world.h"
 
 #define RADIAL2I(c, r, v)\
-    (glms_vec2_norm(glms_vec2_sub(IVEC2S2V((c)), IVEC2S2V((v)))) / glms_vec2_norm(IVEC2S2V((r))))
+    (glms_vec2_norm(glms_vec2_sub(vec2i2f((c)), vec2i2f((v)))) / glms_vec2_norm(vec2i2f((r))))
 
-#define RADIAL3I(c, r, v)\ 
-    (glms_vec3_norm(glms_vec3_sub(IVEC3S2V((c)), IVEC3S2V((v)))) / glms_vec3_norm(IVEC3S2V((r))))
+#define RADIAL3I(c, r, v)\
+    (glms_vec3_norm(glms_vec3_sub(ivec2to3((c)), ivec2to3((v)))) / glms_vec3_norm(ivec2to3((r))))
 
 #define WATER_LEVEL 0
 
@@ -267,7 +267,7 @@ static void _set(struct Chunk *chunk, s32 x, s32 y, s32 z, u32 d) {
 
 
 void worldgen_generate(struct Chunk *chunk) {
-    SRAND(chunk->world->seed + ivec3shash(chunk->offset));
+    srand(chunk->world->seed + ivec3shash(chunk->offset));
 
     struct Heightmap *heightmap = chunk_get_heightmap(chunk);
 
@@ -321,7 +321,7 @@ void worldgen_generate(struct Chunk *chunk) {
                 
                 // decrease temperature with height
                 t -= 0.4f * n;
-                t = clamp(t, 0.0f, 1.0f);
+                t = clampf32(t, 0.0f, 1.0f);
 
                 enum Biome biome_id = get_biome(h, m, t, n, n + h);
                 struct BiomeData biome = BIOME_DATA[biome_id];
@@ -337,8 +337,8 @@ void worldgen_generate(struct Chunk *chunk) {
 
 #define WG_GET_H(_x, _z)\
     heightmap->worldgen_data[\
-        clamp((_x), 0, CHUNK_SIZE.x - 1) * CHUNK_SIZE.x +\
-        clamp((_z), 0, CHUNK_SIZE.z - 1)]
+        clamps64((_x), 0, CHUNK_SIZE.x - 1) * CHUNK_SIZE.x +\
+        clamps64((_z), 0, CHUNK_SIZE.z - 1)]
 
         // smooth heightmap
         for (s64 x = 0; x < CHUNK_SIZE.x; x++) {

@@ -19,8 +19,8 @@ static void _cursor_callback(GLFWwindow *handle, double xp, double yp) {
     vec2s p = {{xp, yp}};
 
     window.mouse.delta = glms_vec2_sub(p, window.mouse.position);
-    window.mouse.delta.x = clamp(window.mouse.delta.x, -100.0f, 100.0f);
-    window.mouse.delta.y = clamp(window.mouse.delta.y, -100.0f, 100.0f);
+    window.mouse.delta.x = clampf32(window.mouse.delta.x, -100.0f, 100.0f);
+    window.mouse.delta.y = clampf32(window.mouse.delta.y, -100.0f, 100.0f);
 
     window.mouse.position = p;
 }
@@ -183,7 +183,7 @@ void window_loop() {
             _tick();
             tick_time -= NS_PER_TICK;
         }
-        window.tick_remainder = max(tick_time, 0);
+        window.tick_remainder = maxu64(tick_time, 0);
     
         _update();
         _render();

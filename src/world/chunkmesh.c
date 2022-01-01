@@ -202,7 +202,7 @@ static void chunkmesh_mesh(struct ChunkMesh *self) {
 
     chunk_foreach(pos) {
         struct BlockMeshParams params;
-        params.position = IVEC3S2V(pos);
+        params.position = vec3i2f(pos);
         params.data = chunk->data[chunk_pos_to_index(pos)];        
 
         enum BlockId block_id = chunk_data_to_block(params.data);
@@ -255,10 +255,10 @@ static void chunkmesh_mesh(struct ChunkMesh *self) {
 
                                 // offset UV coordinates
                                 vec2s uv_offset = glms_vec2_mul(
-                                    IVEC2S2V(uv_offset_px),
+                                    vec2i2f (uv_offset_px),
                                     block_atlas->atlas.pixel_unit),
                                     uv_size = glms_vec2_mul(
-                                    IVEC2S2V(uv_size_px),
+                                    vec2i2f (uv_size_px),
                                     block_atlas->atlas.pixel_unit);
 
                                 params.uv_min = glms_vec2_add(params.uv_min, uv_offset);
@@ -311,7 +311,7 @@ void chunkmesh_render(struct ChunkMesh *self, enum ChunkMeshPart part) {
 
     shader_uniform_mat4(
         state.renderer.shaders[SHADER_CHUNK], "m",
-        glms_translate(glms_mat4_identity(), IVEC3S2V(self->chunk->position)));
+        glms_translate(glms_mat4_identity(), vec3i2f(self->chunk->position)));
 
     const size_t vertex_size = (5 * sizeof(f32)) + (1 * sizeof(u32));
     vao_attr(self->vao, self->vbo, 0, 3, GL_FLOAT, vertex_size, 0 * sizeof(f32));

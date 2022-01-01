@@ -182,7 +182,7 @@ static void stars_render(struct Sky *self, vec3s center, struct Texture tex) {
         return;
     }
 
-    SRAND(0x57A125);
+    srand(0x57A125);
 
     // compuet alpha: 1.0 during night, fade out/in during sunrise/sunset
     const f32 a = self->state == NIGHT ? 1.0f :

@@ -12,7 +12,7 @@ void perspective_camera_init(struct PerspectiveCamera *self, f32 fov) {
 
 void perspective_camera_update(struct PerspectiveCamera *self) {
     // bound pitch at +- pi/2 and yaw in [0, tau]
-    self->pitch = clamp(self->pitch, -PI_2, PI_2);
+    self->pitch = clampf32(self->pitch, -PI_2, PI_2);
     self->yaw = (self->yaw < 0 ? TAU : 0.0f) + fmodf(self->yaw, TAU);
 
     self->direction = (vec3s) {{

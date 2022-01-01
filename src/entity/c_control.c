@@ -9,7 +9,7 @@ static void update(struct ControlComponent *c_control, struct Entity entity) {
     c_camera->camera.pitch -= state.window->mouse.delta.y /
                               (((f32)state.window->frame_delta) /
                                (c_control->mouse_sensitivity * 15000.0f));
-    c_camera->camera.pitch = clamp(c_camera->camera.pitch, -PI_2 + 0.01, PI_2 - 0.01);
+    c_camera->camera.pitch = clampf32(c_camera->camera.pitch, -PI_2 + 0.01, PI_2 - 0.01);
 
     c_camera->camera.yaw -= state.window->mouse.delta.x /
                             (((f32)state.window->frame_delta) /

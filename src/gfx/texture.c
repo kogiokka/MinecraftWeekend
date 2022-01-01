@@ -57,8 +57,9 @@ struct Atlas atlas_create_from_texture(struct Texture texture, ivec2s sprite_siz
     struct Atlas self;
     self.texture = texture;
     self.sprite_size = sprite_size;
-    self.sprite_unit = glms_vec2_div(IVEC2S2V(self.sprite_size), IVEC2S2V(self.texture.size));
-    self.pixel_unit = glms_vec2_div(GLMS_VEC2_ONE, IVEC2S2V(self.texture.size));
+    self.sprite_unit = glms_vec2_div(vec2i2f (self.sprite_size),
+		   vec2i2f (self.texture.size));
+    self.pixel_unit = glms_vec2_div(GLMS_VEC2_ONE, vec2i2f (self.texture.size));
     self.size = glms_ivec2_div(self.texture.size, self.sprite_size);
     return self;
 }
@@ -67,8 +68,8 @@ struct Atlas atlas_create(char *path, ivec2s sprite_size) {
     struct Atlas self;
     self.texture = texture_create_from_path(path);
     self.sprite_size = sprite_size;
-    self.sprite_unit = glms_vec2_div(IVEC2S2V(self.sprite_size), IVEC2S2V(self.texture.size));
-    self.pixel_unit = glms_vec2_div(GLMS_VEC2_ONE, IVEC2S2V(self.texture.size));
+    self.sprite_unit = glms_vec2_div(vec2i2f(self.sprite_size), vec2i2f(self.texture.size));
+    self.pixel_unit = glms_vec2_div(GLMS_VEC2_ONE, vec2i2f(self.texture.size));
     self.size = glms_ivec2_div(self.texture.size, self.sprite_size);
     return self;
 }
@@ -82,6 +83,6 @@ void atlas_get(struct Atlas self, ivec2s pos, vec2s *uv_min, vec2s *uv_max) {
         pos.x * self.sprite_size.x,
         (self.size.y - pos.y - 1) * self.sprite_size.y }};
 
-    *uv_min = glms_vec2_div(p_min, IVEC2S2V(self.texture.size));
-    *uv_max = glms_vec2_div(glms_vec2_add(p_min, IVEC2S2V(self.sprite_size)), IVEC2S2V(self.texture.size));
+    *uv_min = glms_vec2_div(p_min, vec2i2f(self.texture.size));
+    *uv_max = glms_vec2_div(glms_vec2_add(p_min, vec2i2f(self.sprite_size)), vec2i2f(self.texture.size));
 }

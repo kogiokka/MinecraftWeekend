@@ -232,7 +232,7 @@ void world_init(struct World *self) {
 
     self->ticks = 0;
 
-    SRAND(NOW());
+    srand(NOW());
     self->seed = RAND(0, ULONG_MAX - 1);
 
     self->throttles.load.max = 2;
