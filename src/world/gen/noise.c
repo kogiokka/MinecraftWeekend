@@ -10,7 +10,7 @@ f32 octave_compute(struct Octave *p, f32 seed, f32 x, f32 z) {
     return v;
 }
 
-struct Noise octave(s32 n, s32 o) {
+struct Noise octave(i32 n, i32 o) {
     struct Noise result = {.compute = (FNoise) octave_compute};
     struct Octave params = {n, o};
     memcpy(&result.params, &params, sizeof(struct Octave));
@@ -32,7 +32,7 @@ f32 noise_compute(struct Basic *b, f32 seed, f32 x, f32 z) {
     return noise3(x, z, seed + (b->o * 32.0f));
 }
 
-struct Noise basic(s32 o) {
+struct Noise basic(i32 o) {
     struct Noise result = {.compute = (FNoise) noise_compute };
     struct Basic params = { .o = o };
     memcpy(&result.params, &params, sizeof(struct Basic));

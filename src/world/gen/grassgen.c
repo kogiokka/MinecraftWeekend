@@ -1,13 +1,13 @@
 #include "worldgen.h"
 #include "../world.h"
 
-void worldgen_grass(struct Chunk *chunk, FWGGet get, FWGSet set, s64 x, s64 y, s64 z) {
-    s64 s = RAND(2, 10);
-    s64 l = RAND(s - 1, s + 1);
-    s64 h = RAND(s - 1, s + 1);
+void worldgen_grass(struct Chunk *chunk, FWGGet get, FWGSet set, i64 x, i64 y, i64 z) {
+    i64 s = RAND(2, 10);
+    i64 l = RAND(s - 1, s + 1);
+    i64 h = RAND(s - 1, s + 1);
 
-    for (s64 xx = (x - l); xx <= (x + l); xx++) {
-        for (s64 zz = (z - h); zz <= (z + h); zz++) {
+    for (i64 xx = (x - l); xx <= (x + l); xx++) {
+        for (i64 zz = (z - h); zz <= (z + h); zz++) {
             enum BlockId block = get(chunk, xx, y + 1, zz),
                 under = get(chunk, xx, y, zz);
             if (block == AIR &&

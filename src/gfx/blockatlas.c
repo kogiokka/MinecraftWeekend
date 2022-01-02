@@ -3,8 +3,8 @@
 #include "../state.h"
 
 static void copy_pixels(u8 *pixels, ivec2s image_size, ivec2s size, ivec2s from, ivec2s to) {
-    for (s32 j = 0; j < size.y; j++) {
-        for (s32 i = 0; i < size.x; i++) {
+    for (i32 j = 0; j < size.y; j++) {
+        for (i32 i = 0; i < size.x; i++) {
             pixels[((to.y + j) * image_size.x + (to.x + i)) * 4] =
                 pixels[((from.y + j) * image_size.x + (from.x + i)) * 4];
         }

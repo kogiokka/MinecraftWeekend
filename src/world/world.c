@@ -90,7 +90,7 @@ static inline ivec2s world_pos_to_heightmap_pos(ivec2s pos) {
 
 static inline bool world_heightmap_in_bounds(struct World *self, ivec2s offset) {
     ivec2s p = glms_ivec2_sub(offset, (ivec2s) {{ self->chunks_origin.x, self->chunks_origin.z }});
-    return p.x >= 0 && p.y >= 0 && p.x < (s32) self->chunks_size && p.y < (s32) self->chunks_size;
+    return p.x >= 0 && p.y >= 0 && p.x < (i32) self->chunks_size && p.y < (i32) self->chunks_size;
 }
 
 // heightmap offset -> array index
@@ -116,7 +116,7 @@ struct Heightmap *chunk_get_heightmap(struct Chunk *self) {
 }
 
 // returns heightmap value at specified x, z coordinate
-s64 world_heightmap_get(struct World *self, ivec2s p) {
+i64 world_heightmap_get(struct World *self, ivec2s p) {
     ivec3s offset_c = world_pos_to_offset((ivec3s) {{ p.x, 0, p.y }});
     ivec2s offset_h = (ivec2s) {{ offset_c.x, offset_c.z }};
 
@@ -130,7 +130,7 @@ s64 world_heightmap_get(struct World *self, ivec2s p) {
 }
 
 // sets heightmap value at specified x, z coordinate
-void world_heightmap_set(struct World *self, ivec2s p, s64 y) {
+void world_heightmap_set(struct World *self, ivec2s p, i64 y) {
     ivec3s offset = world_pos_to_offset((ivec3s) {{ p.x, 0, p.y }});
     HEIGHTMAP_SET(self->heightmaps[
             world_heightmap_index(self, (ivec2s) {{ offset.x, offset.z }})],
@@ -159,21 +159,21 @@ void chunk_heightmap_recalculate(struct Chunk *chunk) {
     struct Heightmap *heightmap = chunk_get_heightmap(chunk);
     ivec3s pos_c, pos_w;
 
-    for (s64 x = 0; x < CHUNK_SIZE.x; x++) {
-        for (s64 z = 0; z < CHUNK_SIZE.z; z++) {
+    for (i64 x = 0; x < CHUNK_SIZE.x; x++) {
+        for (i64 z = 0; z < CHUNK_SIZE.z; z++) {
             pos_c.x = x;
             pos_c.z = z;
             pos_w.x = x + chunk->position.x;
             pos_w.z = z + chunk->position.z;
 
-            s64 h = HEIGHTMAP_GET(heightmap, ((ivec2s) {{ x, z }}));
+            i64 h = HEIGHTMAP_GET(heightmap, ((ivec2s) {{ x, z }}));
 
             // don't set heightmap value if it's already above this column
             if (h > (chunk->position.y + CHUNK_SIZE.y - 1)) {
                 continue;
             }
 
-            for (s64 y = CHUNK_SIZE.y - 1; y >= 0; y--) {
+            for (i64 y = CHUNK_SIZE.y - 1; y >= 0; y--) {
                 pos_c.y = y;
                 pos_w.y = y + chunk->position.y;
 
@@ -189,10 +189,10 @@ void chunk_heightmap_recalculate(struct Chunk *chunk) {
 // recalculate the heightmap value at the specified x, z coordinate
 void world_heightmap_recalculate(struct World *self, ivec2s p) {
     assert(world_in_bounds(self, (ivec3s) {{ p.x, 0, p.y }}));
-    s64 y_min = self->chunks_origin.y * CHUNK_SIZE.y,
+    i64 y_min = self->chunks_origin.y * CHUNK_SIZE.y,
         y_max = (self->chunks_origin.y + self->chunks_size) * CHUNK_SIZE.y;
 
-    for (s64 y = y_max; y >= y_min; y--) {
+    for (i64 y = y_max; y >= y_min; y--) {
         ivec3s w = (ivec3s) {{ p.x, y, p.y }};
         if (!BLOCKS[world_get_block(self, w)].transparent) {
             world_heightmap_set(self, p, y);
@@ -364,9 +364,9 @@ void world_set_center(struct World *self, ivec3s center_pos) {
         if (self->heightmaps[i] == NULL) {
             self->heightmaps[i] = calloc(1, sizeof(struct Heightmap));
             self->heightmaps[i]->offset = world_heightmap_offset(self, i);
-            self->heightmaps[i]->data = malloc(CHUNK_SIZE.x * CHUNK_SIZE.z * sizeof(s64));
+            self->heightmaps[i]->data = malloc(CHUNK_SIZE.x * CHUNK_SIZE.z * sizeof(i64));
             self->heightmaps[i]->worldgen_data = malloc(CHUNK_SIZE.x * CHUNK_SIZE.z * sizeof(struct WorldgenData));
-            memsetl(self->heightmaps[i]->data, HEIGHTMAP_UNKNOWN, CHUNK_SIZE.x * CHUNK_SIZE.z * sizeof(s64));
+            memsetl(self->heightmaps[i]->data, HEIGHTMAP_UNKNOWN, CHUNK_SIZE.x * CHUNK_SIZE.z * sizeof(i64));
         }
     }
 
@@ -460,9 +460,9 @@ size_t world_get_aabbs(struct World *self, AABB area, AABB *aabbs, size_t n) {
         b_max = glms_ivec3_add(world_pos_to_block(area[1]), GLMS_IVEC3_ONE);
 
     size_t i = 0;
-    for (s64 x = b_min.x; x <= b_max.x; x++) {
-        for (s64 z = b_min.z; z <= b_max.z; z++) {
-            for (s64 y = b_min.y; y <= b_max.y; y++) {
+    for (i64 x = b_min.x; x <= b_max.x; x++) {
+        for (i64 z = b_min.z; z <= b_max.z; z++) {
+            for (i64 y = b_min.y; y <= b_max.y; y++) {
                 ivec3s pos = (ivec3s) {{ x, y, z }};
                 struct Block block = BLOCKS[world_get_block(self, pos)];
                 

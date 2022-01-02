@@ -25,9 +25,9 @@ struct World;
 
 #define chunk_foreach(_pname)\
     ivec3s _pname = GLMS_IVEC3_ZERO_INIT;\
-    for (s32 x = 0; x < CHUNK_SIZE.x; x++)\
-        for (s32 z = 0; z < CHUNK_SIZE.z; z++)\
-            for (s32 y = 0;\
+    for (i32 x = 0; x < CHUNK_SIZE.x; x++)\
+        for (i32 z = 0; z < CHUNK_SIZE.z; z++)\
+            for (i32 y = 0;\
                 y < CHUNK_SIZE.y &&\
                 ((_pname.x = x) != INT32_MAX) &&\
                 ((_pname.y = y) != INT32_MAX) &&\

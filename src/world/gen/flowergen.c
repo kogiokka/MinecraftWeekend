@@ -1,15 +1,15 @@
 #include "worldgen.h"
 #include "../world.h"
 
-void worldgen_flowers(struct Chunk *chunk, FWGGet get, FWGSet set, s64 x, s64 y, s64 z) {
+void worldgen_flowers(struct Chunk *chunk, FWGGet get, FWGSet set, i64 x, i64 y, i64 z) {
     enum BlockId flower = RANDCHANCE(0.6) ? ROSE : BUTTERCUP;
 
-    s64 s = RAND(2, 6);
-    s64 l = RAND(s - 1, s + 1);
-    s64 h = RAND(s - 1, s + 1);
+    i64 s = RAND(2, 6);
+    i64 l = RAND(s - 1, s + 1);
+    i64 h = RAND(s - 1, s + 1);
 
-    for (s64 xx = (x - l); xx <= (x + l); xx++) {
-        for (s64 zz = (z - h); zz <= (z + h); zz++) {
+    for (i64 xx = (x - l); xx <= (x + l); xx++) {
+        for (i64 zz = (z - h); zz <= (z + h); zz++) {
             enum BlockId block = get(chunk, xx, y + 1, zz),
                 under = get(chunk, xx, y, zz);
             if (block == AIR &&

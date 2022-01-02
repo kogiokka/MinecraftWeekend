@@ -1,24 +1,24 @@
 #include "worldgen.h"
 #include "../world.h"
 
-void worldgen_tree(struct Chunk *chunk, FWGGet get, FWGSet set, s64 x, s64 y, s64 z) {
+void worldgen_tree(struct Chunk *chunk, FWGGet get, FWGSet set, i64 x, i64 y, i64 z) {
     enum BlockId under = get(chunk, x, y, z);
     if (under != GRASS && under != DIRT) {
         return;
     }
 
-    s32 h = RAND(3, 5);
+    i32 h = RAND(3, 5);
 
-    for (s32 yy = y + 1; yy <= (y + h); yy++) {
+    for (i32 yy = y + 1; yy <= (y + h); yy++) {
         set(chunk, x, yy, z, LOG);
     }
 
-    s32 lh = RAND(2, 3);
+    i32 lh = RAND(2, 3);
 
-    for (s32 xx = (x - 2); xx <= (x + 2); xx++) {
-        for (s32 zz = (z - 2); zz <= (z + 2); zz++) {
-            for (s32 yy = (y + h); yy <= (y + h + 1); yy++) {
-                s32 c = 0;
+    for (i32 xx = (x - 2); xx <= (x + 2); xx++) {
+        for (i32 zz = (z - 2); zz <= (z + 2); zz++) {
+            for (i32 yy = (y + h); yy <= (y + h + 1); yy++) {
+                i32 c = 0;
                 c += xx == (x - 2) || xx == (x + 2);
                 c += zz == (z - 2) || zz == (z + 2);
                 bool corner = c == 2;
@@ -31,10 +31,10 @@ void worldgen_tree(struct Chunk *chunk, FWGGet get, FWGSet set, s64 x, s64 y, s6
         }
     }
 
-    for (s32 xx = (x - 1); xx <= (x + 1); xx++) {
-        for (s32 zz = (z - 1); zz <= (z + 1); zz++) {
-            for (s32 yy = (y + h + 2); yy <= (y + h + lh); yy++) {
-                s32 c = 0;
+    for (i32 xx = (x - 1); xx <= (x + 1); xx++) {
+        for (i32 zz = (z - 1); zz <= (z + 1); zz++) {
+            for (i32 yy = (y + h + 2); yy <= (y + h + lh); yy++) {
+                i32 c = 0;
                 c += xx == (x - 1) || xx == (x + 1);
                 c += zz == (z - 1) || zz == (z + 1);
                 bool corner = c == 2;
@@ -47,21 +47,21 @@ void worldgen_tree(struct Chunk *chunk, FWGGet get, FWGSet set, s64 x, s64 y, s6
     }
 }
 
-void worldgen_pine(struct Chunk *chunk, FWGGet get, FWGSet set, s64 x, s64 y, s64 z) {
+void worldgen_pine(struct Chunk *chunk, FWGGet get, FWGSet set, i64 x, i64 y, i64 z) {
     enum BlockId under = get(chunk, x, y, z);
     if (under != GRASS && under != DIRT && under != SNOW && under != PODZOL) {
         return;
     }
 
-    s64 h = RAND(5, 7);
+    i64 h = RAND(5, 7);
 
-    for (s32 yy = y + 1; yy <= (y + h); yy++) {
+    for (i32 yy = y + 1; yy <= (y + h); yy++) {
         set(chunk, x, yy, z, PINE_LOG);
     }
 
-    s64 r = RAND(2, 3);
+    i64 r = RAND(2, 3);
 
-    for(s64 yy = (y + 3); yy <= (y + h); yy++) {
+    for(i64 yy = (y + 3); yy <= (y + h); yy++) {
         if (yy != (y + h) && yy % 2 == 0) {
             continue;
         }
@@ -72,9 +72,9 @@ void worldgen_pine(struct Chunk *chunk, FWGGet get, FWGSet set, s64 x, s64 y, s6
             r--;
         }
 
-        for (s32 xx = (x - r); xx <= (x + r); xx++) {
-            for (s32 zz = (z - r); zz <= (z + r); zz++) {
-                s32 c = 0;
+        for (i32 xx = (x - r); xx <= (x + r); xx++) {
+            for (i32 zz = (z - r); zz <= (z + r); zz++) {
+                i32 c = 0;
                 c += xx == (x - r) || xx == (x + r);
                 c += zz == (z - r) || zz == (z + r);
                 bool corner = c == 2;

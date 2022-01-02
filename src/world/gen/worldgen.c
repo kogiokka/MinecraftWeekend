@@ -242,7 +242,7 @@ static enum Biome get_biome(f32 h, f32 m, f32 t, f32 n, f32 i) {
     return BIOME_TABLE[m_i][t_i];
 }
 
-static enum BlockId _get(struct Chunk *chunk, s32 x, s32 y, s32 z) {
+static enum BlockId _get(struct Chunk *chunk, i32 x, i32 y, i32 z) {
     ivec3s p = (ivec3s) {{ x, y, z }};
     if (chunk_in_bounds(p)) {
         return chunk_get_block(chunk, p);
@@ -251,7 +251,7 @@ static enum BlockId _get(struct Chunk *chunk, s32 x, s32 y, s32 z) {
     }
 }
 
-static void _set(struct Chunk *chunk, s32 x, s32 y, s32 z, u32 d) {
+static void _set(struct Chunk *chunk, i32 x, i32 y, i32 z, u32 d) {
     ivec3s p = (ivec3s){{x, y, z}};
     if (chunk_in_bounds(p)) {
         chunk_set_block(chunk, p, d);
@@ -302,9 +302,9 @@ void worldgen_generate(struct Chunk *chunk) {
             n_n = expscale(&cs[3], 3.0f, 1.0f / 512.0f),
             n_p = expscale(&cs[4], 3.0f, 1.0f / 512.0f);
 
-        for (s64 x = 0; x < CHUNK_SIZE.x; x++) {
-            for (s64 z = 0; z < CHUNK_SIZE.z; z++) {
-                s64 wx = chunk->position.x + x, wz = chunk->position.z + z;
+        for (i64 x = 0; x < CHUNK_SIZE.x; x++) {
+            for (i64 z = 0; z < CHUNK_SIZE.z; z++) {
+                i64 wx = chunk->position.x + x, wz = chunk->position.z + z;
 
                 f32 h = n_h.compute(&n_h.params, chunk->world->seed, wx, wz),
                     m = n_m.compute(&n_m.params, chunk->world->seed, wx, wz) * 0.5f + 0.5f,
@@ -337,12 +337,12 @@ void worldgen_generate(struct Chunk *chunk) {
 
 #define WG_GET_H(_x, _z)\
     heightmap->worldgen_data[\
-        clamps64((_x), 0, CHUNK_SIZE.x - 1) * CHUNK_SIZE.x +\
-        clamps64((_z), 0, CHUNK_SIZE.z - 1)]
+        clampi64((_x), 0, CHUNK_SIZE.x - 1) * CHUNK_SIZE.x +\
+        clampi64((_z), 0, CHUNK_SIZE.z - 1)]
 
         // smooth heightmap
-        for (s64 x = 0; x < CHUNK_SIZE.x; x++) {
-            for (s64 z = 0; z < CHUNK_SIZE.z; z++) {
+        for (i64 x = 0; x < CHUNK_SIZE.x; x++) {
+            for (i64 z = 0; z < CHUNK_SIZE.z; z++) {
                 f32 v = 0.0f;
                 v += (WG_GET_H(x - 1, z - 1)).h_b;
                 v += (WG_GET_H(x + 1, z - 1)).h_b;
@@ -354,18 +354,18 @@ void worldgen_generate(struct Chunk *chunk) {
         }
     }
 
-    for (s64 x = 0; x < CHUNK_SIZE.x; x++) {
-        for (s64 z = 0; z < CHUNK_SIZE.z; z++) {
+    for (i64 x = 0; x < CHUNK_SIZE.x; x++) {
+        for (i64 z = 0; z < CHUNK_SIZE.z; z++) {
             struct WorldgenData data = heightmap->worldgen_data[x * CHUNK_SIZE.x + z];
-            s64 h = data.h;
+            i64 h = data.h;
             enum Biome biome = data.b;
             struct BiomeData biome_data = BIOME_DATA[biome]; 
 
             enum BlockId top_block = h > 48 ? SNOW : biome_data.top_block,
                 under_block = biome_data.bottom_block;
 
-            for (s64 y = 0; y < CHUNK_SIZE.y; y++) {
-                s64 y_w = chunk->position.y + y;
+            for (i64 y = 0; y < CHUNK_SIZE.y; y++) {
+                i64 y_w = chunk->position.y + y;
 
                 enum BlockId block = AIR;
 

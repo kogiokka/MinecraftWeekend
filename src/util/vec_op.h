@@ -41,9 +41,9 @@ static inline int ivec3scmp(ivec3s a, ivec3s b)
     return memcmp(&a, &b, sizeof(ivec3s));
 }
 
-static inline s64 ivec3shash(ivec3s v)
+static inline i64 ivec3shash(ivec3s v)
 {
-    s64 h = 0;
+    i64 h = 0;
     for (int i = 0; i < 3; i++) {
         h ^= v.raw[i] + 0x9e3779b9 + (h << 6) + (h >> 2);
     }

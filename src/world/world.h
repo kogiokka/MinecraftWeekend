@@ -29,7 +29,7 @@ struct Heightmap {
     ivec2s offset;
 
     // heightmap data (highest block in this Y column)
-    s64 *data;
+    i64 *data;
 
     // heightmap worldgen data (see worldgen.c for usage)
     struct WorldgenData *worldgen_data;
@@ -94,7 +94,7 @@ struct World {
 };
 
 struct Heightmap *chunk_get_heightmap(struct Chunk *self);
-s64 world_heightmap_get(struct World *self, ivec2s p);
+i64 world_heightmap_get(struct World *self, ivec2s p);
 bool world_heightmap_update(struct World *self, ivec3s p);
 
 void chunk_heightmap_recalculate(struct Chunk *chunk);
@@ -114,16 +114,16 @@ size_t world_get_aabbs(struct World *self, AABB area, AABB *aabbs, size_t n);
 
 // block position -> chunk offset
 static inline ivec3s world_pos_to_offset(ivec3s pos) {
-    return (ivec3s){{(s32)floorf(pos.x / CHUNK_SIZE_F.x),
-                     (s32)floorf(pos.y / CHUNK_SIZE_F.y),
-                     (s32)floorf(pos.z / CHUNK_SIZE_F.z)}};
+    return (ivec3s){{(i32)floorf(pos.x / CHUNK_SIZE_F.x),
+                     (i32)floorf(pos.y / CHUNK_SIZE_F.y),
+                     (i32)floorf(pos.z / CHUNK_SIZE_F.z)}};
 }
 
 // float pos -> block pos
 static inline ivec3s world_pos_to_block(vec3s pos) {
-    return (ivec3s){{(s32)floorf(pos.x),
-                     (s32)floorf(pos.y),
-                     (s32)floorf(pos.z)}};
+    return (ivec3s){{(i32)floorf(pos.x),
+                     (i32)floorf(pos.y),
+                     (i32)floorf(pos.z)}};
 }
 
 // world position -> chunk position
@@ -135,7 +135,7 @@ static inline ivec3s world_pos_to_chunk_pos(ivec3s pos) {
 static inline bool world_chunk_in_bounds(struct World *self, ivec3s offset) {
     ivec3s p = glms_ivec3_sub(offset, self->chunks_origin);
     return p.x >= 0 && p.y >= 0 && p.z >= 0 &&
-           p.x < (s32)self->chunks_size && p.y < (s32)self->chunks_size && p.z < (s32)self->chunks_size;
+           p.x < (i32)self->chunks_size && p.y < (i32)self->chunks_size && p.z < (i32)self->chunks_size;
 }
 
 // chunk offset -> world array index

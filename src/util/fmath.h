@@ -23,7 +23,7 @@ static inline float degrees(float radians)
 
 static inline f32 sign(f32 x)
 {
-    return (f32)((s32)(x > 0.0f) - (s32)(x < 0.0f));
+    return (f32)((i32)(x > 0.0f) - (i32)(x < 0.0f));
 }
 
 static inline float safe_expf(float x, float e)
@@ -43,10 +43,10 @@ static inline float lerpf(float a, float b, float t)
 #define template_clamp(T)                                                                                              \
     static inline T clamp##T(T _x, T _min, T _max) { return max##T(_min, min##T(_max, _x)); }
 
-template_minmax(s64);
+template_minmax(i64);
 template_minmax(u64);
 template_minmax(f32);
-template_clamp(s64);
+template_clamp(i64);
 template_clamp(u64);
 template_clamp(f32);
 

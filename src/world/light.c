@@ -41,7 +41,7 @@ static void add_propagate(
 
         // propagate in reverse of enum Direction order so DOWN is first
         // this will improve sunlight propagation speed
-        for (enum Direction d = DOWN; (s32) d >= 0; d--) {
+        for (enum Direction d = DOWN; (i32) d >= 0; d--) {
             bool sunlight_down = type == SUNLIGHT && d == DOWN; 
 
             ivec3s n_pos = glms_ivec3_add(node.pos, DIR2IVEC3S(d));
@@ -173,11 +173,11 @@ void light_apply(struct Chunk *chunk) {
         torchlight_queue = { .size = 0 };
 
     // propagate sunlight for this chunk
-    for (s64 x = 0; x < CHUNK_SIZE.x; x++) {
-        for (s64 z = 0; z < CHUNK_SIZE.z; z++) {
-            s64 h = HEIGHTMAP_GET(heightmap, ((ivec2s) {{ x, z }}));
+    for (i64 x = 0; x < CHUNK_SIZE.x; x++) {
+        for (i64 z = 0; z < CHUNK_SIZE.z; z++) {
+            i64 h = HEIGHTMAP_GET(heightmap, ((ivec2s) {{ x, z }}));
 
-            for (s64 y = CHUNK_SIZE.y - 1; y >= 0; y--) {
+            for (i64 y = CHUNK_SIZE.y - 1; y >= 0; y--) {
                 ivec3s pos_c = (ivec3s) {{ x, y, z }},
                     pos_w = glms_ivec3_add(chunk->position, pos_c);
 
@@ -218,8 +218,8 @@ void light_apply(struct Chunk *chunk) {
     ivec3s pos;
     u32 light;
 
-    for (s64 x = 0; x < CHUNK_SIZE.x; x++) {
-        for (s64 z = 0; z < CHUNK_SIZE.z; z++) {
+    for (i64 x = 0; x < CHUNK_SIZE.x; x++) {
+        for (i64 z = 0; z < CHUNK_SIZE.z; z++) {
             pos = glms_ivec3_add(chunk->position, (ivec3s) {{ x, -1, z }});
             light = world_get_light(chunk->world, pos);
 
@@ -236,8 +236,8 @@ void light_apply(struct Chunk *chunk) {
         }
     }
 
-    for (s64 x = 0; x < CHUNK_SIZE.x; x++) {
-        for (s64 y = 0; y < CHUNK_SIZE.y; y++) {
+    for (i64 x = 0; x < CHUNK_SIZE.x; x++) {
+        for (i64 y = 0; y < CHUNK_SIZE.y; y++) {
             pos = glms_ivec3_add(chunk->position, (ivec3s) {{ x, y, -1 }});
             light = world_get_light(chunk->world, pos);
 
@@ -254,8 +254,8 @@ void light_apply(struct Chunk *chunk) {
         }
     }
 
-    for (s64 y = 0; y < CHUNK_SIZE.y; y++) {
-        for (s64 z = 0; z < CHUNK_SIZE.z; z++) {
+    for (i64 y = 0; y < CHUNK_SIZE.y; y++) {
+        for (i64 z = 0; z < CHUNK_SIZE.z; z++) {
             pos = glms_ivec3_add(chunk->position, (ivec3s) {{ -1, y, z }});
             light = world_get_light(chunk->world, pos);
 
