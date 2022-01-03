@@ -3,8 +3,9 @@
 
 #include "../util/util.h"
 
-struct ControlComponent {
-    f32 mouse_sensitivity;
+struct ControlComponent
+{
+  f32 mouse_sensitivity;
 };
 
 #endif

@@ -3,11 +3,12 @@
 
 #include "../util/util.h"
 
-struct PositionComponent {
-    vec3s position;
+struct PositionComponent
+{
+  vec3s position;
 
-    ivec3s block, offset;
-    bool block_changed, offset_changed;
+  ivec3s block, offset;
+  bool block_changed, offset_changed;
 };
 
 #endif

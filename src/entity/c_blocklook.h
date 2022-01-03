@@ -3,15 +3,17 @@
 
 #include "../util/util.h"
 
-struct BlockLookComponent {
-    bool hit;
-    ivec3s pos;
-    enum Direction face;
-    f32 radius;
+struct BlockLookComponent
+{
+  bool hit;
+  ivec3s pos;
+  enum Direction face;
+  f32 radius;
 
-    struct {
-        bool render : 1;
-    } flags;
+  struct
+  {
+    bool render : 1;
+  } flags;
 };
 
 #endif

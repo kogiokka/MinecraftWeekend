@@ -65,11 +65,11 @@
    CGLM_INLINE ivec3s glms_ivec3_mixc(ivec3s from, ivec3s to, int t);
    CGLM_INLINE ivec3s glms_ivec3_step_uni(int edge, ivec3s x);
    CGLM_INLINE ivec3s glms_ivec3_step(ivec3s edge, ivec3s x);
-   CGLM_INLINE ivec3s glms_ivec3_smoothstep_uni(int edge0, int edge1, ivec3s x);
-   CGLM_INLINE ivec3s glms_ivec3_smoothstep(ivec3s edge0, ivec3s edge1, ivec3s x);
-   CGLM_INLINE ivec3s glms_ivec3_smoothinterp(ivec3s from, ivec3s to, int t);
-   CGLM_INLINE ivec3s glms_ivec3_smoothinterpc(ivec3s from, ivec3s to, int t);
-   CGLM_INLINE ivec3s glms_ivec3_swizzle(ivec3s v, int mask);
+   CGLM_INLINE ivec3s glms_ivec3_smoothstep_uni(int edge0, int edge1, ivec3s
+ x); CGLM_INLINE ivec3s glms_ivec3_smoothstep(ivec3s edge0, ivec3s edge1,
+ ivec3s x); CGLM_INLINE ivec3s glms_ivec3_smoothinterp(ivec3s from, ivec3s to,
+ int t); CGLM_INLINE ivec3s glms_ivec3_smoothinterpc(ivec3s from, ivec3s to,
+ int t); CGLM_INLINE ivec3s glms_ivec3_swizzle(ivec3s v, int mask);
 
  Convenient:
    CGLM_INLINE ivec3s glms_cross(ivec3s a, ivec3s b);
@@ -86,15 +86,21 @@
 
 #include "ivec3.h"
 
-#define GLMS_IVEC3_ONE_INIT   {GLM_IVEC3_ONE_INIT}
-#define GLMS_IVEC3_ZERO_INIT  {GLM_IVEC3_ZERO_INIT}
+#define GLMS_IVEC3_ONE_INIT                                                   \
+  {                                                                           \
+    GLM_IVEC3_ONE_INIT                                                        \
+  }
+#define GLMS_IVEC3_ZERO_INIT                                                  \
+  {                                                                           \
+    GLM_IVEC3_ZERO_INIT                                                       \
+  }
 
-#define GLMS_IVEC3_ONE  ((ivec3s)GLMS_IVEC3_ONE_INIT)
+#define GLMS_IVEC3_ONE ((ivec3s)GLMS_IVEC3_ONE_INIT)
 #define GLMS_IVEC3_ZERO ((ivec3s)GLMS_IVEC3_ZERO_INIT)
 
-#define GLMS_IVEC3S_YUP  ((ivec3s){{0.0f, 1.0f, 0.0f}})
-#define GLMS_IVEC3S_ZUP  ((ivec3s){{0.0f, 0.0f, 1.0f}})
-#define GLMS_IVEC3S_XUP  ((ivec3s){{1.0f, 0.0f, 0.0f}})
+#define GLMS_IVEC3S_YUP ((ivec3s){ { 0.0f, 1.0f, 0.0f } })
+#define GLMS_IVEC3S_ZUP ((ivec3s){ { 0.0f, 0.0f, 1.0f } })
+#define GLMS_IVEC3S_XUP ((ivec3s){ { 1.0f, 0.0f, 0.0f } })
 
 /*!
  * @brief init ivec3 using vec4
@@ -104,9 +110,10 @@
  */
 CGLM_INLINE
 ivec3s
-glms_ivec3(vec4s v4) {
+glms_ivec3 (vec4s v4)
+{
   ivec3s r;
-  glm_ivec3(v4.raw, r.raw);
+  glm_ivec3 (v4.raw, r.raw);
   return r;
 }
 
@@ -119,12 +126,14 @@ glms_ivec3(vec4s v4) {
  */
 CGLM_INLINE
 void
-glms_ivec3_pack(ivec3s dst[], ivec3 src[], size_t len) {
+glms_ivec3_pack (ivec3s dst[], ivec3 src[], size_t len)
+{
   size_t i;
 
-  for (i = 0; i < len; i++) {
-    glm_ivec3_copy(src[i], dst[i].raw);
-  }
+  for (i = 0; i < len; i++)
+    {
+      glm_ivec3_copy (src[i], dst[i].raw);
+    }
 }
 
 /*!
@@ -136,12 +145,14 @@ glms_ivec3_pack(ivec3s dst[], ivec3 src[], size_t len) {
  */
 CGLM_INLINE
 void
-glms_ivec3_unpack(ivec3 dst[], ivec3s src[], size_t len) {
+glms_ivec3_unpack (ivec3 dst[], ivec3s src[], size_t len)
+{
   size_t i;
 
-  for (i = 0; i < len; i++) {
-    glm_ivec3_copy(src[i].raw, dst[i]);
-  }
+  for (i = 0; i < len; i++)
+    {
+      glm_ivec3_copy (src[i].raw, dst[i]);
+    }
 }
 
 /*!
@@ -151,9 +162,10 @@ glms_ivec3_unpack(ivec3 dst[], ivec3s src[], size_t len) {
  */
 CGLM_INLINE
 ivec3s
-glms_ivec3_zero(void) {
+glms_ivec3_zero (void)
+{
   ivec3s r;
-  glm_ivec3_zero(r.raw);
+  glm_ivec3_zero (r.raw);
   return r;
 }
 
@@ -164,9 +176,10 @@ glms_ivec3_zero(void) {
  */
 CGLM_INLINE
 ivec3s
-glms_ivec3_one(void) {
+glms_ivec3_one (void)
+{
   ivec3s r;
-  glm_ivec3_one(r.raw);
+  glm_ivec3_one (r.raw);
   return r;
 }
 
@@ -180,8 +193,9 @@ glms_ivec3_one(void) {
  */
 CGLM_INLINE
 int
-glms_ivec3_dot(ivec3s a, ivec3s b) {
-  return glm_ivec3_dot(a.raw, b.raw);
+glms_ivec3_dot (ivec3s a, ivec3s b)
+{
+  return glm_ivec3_dot (a.raw, b.raw);
 }
 
 /*!
@@ -197,8 +211,9 @@ glms_ivec3_dot(ivec3s a, ivec3s b) {
  */
 CGLM_INLINE
 int
-glms_ivec3_norm2(ivec3s v) {
-  return glm_ivec3_norm2(v.raw);
+glms_ivec3_norm2 (ivec3s v)
+{
+  return glm_ivec3_norm2 (v.raw);
 }
 
 /*!
@@ -210,8 +225,9 @@ glms_ivec3_norm2(ivec3s v) {
  */
 CGLM_INLINE
 int
-glms_ivec3_norm(ivec3s v) {
-  return glm_ivec3_norm(v.raw);
+glms_ivec3_norm (ivec3s v)
+{
+  return glm_ivec3_norm (v.raw);
 }
 
 /*!
@@ -223,9 +239,10 @@ glms_ivec3_norm(ivec3s v) {
  */
 CGLM_INLINE
 ivec3s
-glms_ivec3_add(ivec3s a, ivec3s b) {
+glms_ivec3_add (ivec3s a, ivec3s b)
+{
   ivec3s r;
-  glm_ivec3_add(a.raw, b.raw, r.raw);
+  glm_ivec3_add (a.raw, b.raw, r.raw);
   return r;
 }
 
@@ -238,9 +255,10 @@ glms_ivec3_add(ivec3s a, ivec3s b) {
  */
 CGLM_INLINE
 ivec3s
-glms_ivec3_adds(ivec3s a, int s) {
+glms_ivec3_adds (ivec3s a, int s)
+{
   ivec3s r;
-  glm_ivec3_adds(a.raw, s, r.raw);
+  glm_ivec3_adds (a.raw, s, r.raw);
   return r;
 }
 
@@ -253,9 +271,10 @@ glms_ivec3_adds(ivec3s a, int s) {
  */
 CGLM_INLINE
 ivec3s
-glms_ivec3_sub(ivec3s a, ivec3s b) {
+glms_ivec3_sub (ivec3s a, ivec3s b)
+{
   ivec3s r;
-  glm_ivec3_sub(a.raw, b.raw, r.raw);
+  glm_ivec3_sub (a.raw, b.raw, r.raw);
   return r;
 }
 
@@ -268,9 +287,10 @@ glms_ivec3_sub(ivec3s a, ivec3s b) {
  */
 CGLM_INLINE
 ivec3s
-glms_ivec3_subs(ivec3s a, int s) {
+glms_ivec3_subs (ivec3s a, int s)
+{
   ivec3s r;
-  glm_ivec3_subs(a.raw, s, r.raw);
+  glm_ivec3_subs (a.raw, s, r.raw);
   return r;
 }
 
@@ -283,9 +303,10 @@ glms_ivec3_subs(ivec3s a, int s) {
  */
 CGLM_INLINE
 ivec3s
-glms_ivec3_mul(ivec3s a, ivec3s b) {
+glms_ivec3_mul (ivec3s a, ivec3s b)
+{
   ivec3s r;
-  glm_ivec3_mul(a.raw, b.raw, r.raw);
+  glm_ivec3_mul (a.raw, b.raw, r.raw);
   return r;
 }
 
@@ -298,9 +319,10 @@ glms_ivec3_mul(ivec3s a, ivec3s b) {
  */
 CGLM_INLINE
 ivec3s
-glms_ivec3_scale(ivec3s v, int s) {
+glms_ivec3_scale (ivec3s v, int s)
+{
   ivec3s r;
-  glm_ivec3_scale(v.raw, s, r.raw);
+  glm_ivec3_scale (v.raw, s, r.raw);
   return r;
 }
 
@@ -313,17 +335,19 @@ glms_ivec3_scale(ivec3s v, int s) {
  */
 CGLM_INLINE
 ivec3s
-glms_ivec3_div(ivec3s a, ivec3s b) {
+glms_ivec3_div (ivec3s a, ivec3s b)
+{
   ivec3s r;
-  glm_ivec3_div(a.raw, b.raw, r.raw);
+  glm_ivec3_div (a.raw, b.raw, r.raw);
   return r;
 }
 
 CGLM_INLINE
 ivec3s
-glms_ivec3_mod(ivec3s a, ivec3s b) {
+glms_ivec3_mod (ivec3s a, ivec3s b)
+{
   ivec3s r;
-  glm_ivec3_mod(a.raw, b.raw, r.raw);
+  glm_ivec3_mod (a.raw, b.raw, r.raw);
   return r;
 }
 
@@ -336,9 +360,10 @@ glms_ivec3_mod(ivec3s a, ivec3s b) {
  */
 CGLM_INLINE
 ivec3s
-glms_ivec3_divs(ivec3s a, int s) {
+glms_ivec3_divs (ivec3s a, int s)
+{
   ivec3s r;
-  glm_ivec3_divs(a.raw, s, r.raw);
+  glm_ivec3_divs (a.raw, s, r.raw);
   return r;
 }
 

@@ -7,10 +7,11 @@
 
 typedef u64 EntityId;
 
-struct Entity {
-    EntityId id;
-    u64 index;
-    struct ECS *ecs;
+struct Entity
+{
+  EntityId id;
+  u64 index;
+  struct ECS *ecs;
 };
 
 #endif

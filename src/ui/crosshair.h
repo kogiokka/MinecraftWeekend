@@ -3,8 +3,9 @@
 
 #include "../util/util.h"
 
-struct UICrosshair {
-    bool enabled;
+struct UICrosshair
+{
+  bool enabled;
 };
 
 #endif

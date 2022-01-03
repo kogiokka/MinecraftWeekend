@@ -58,10 +58,16 @@
 
 typedef int ivec2[2];
 
-#define GLM_IVEC2_ONE_INIT   {1.0f, 1.0f}
-#define GLM_IVEC2_ZERO_INIT  {0.0f, 0.0f}
+#define GLM_IVEC2_ONE_INIT                                                    \
+  {                                                                           \
+    1.0f, 1.0f                                                                \
+  }
+#define GLM_IVEC2_ZERO_INIT                                                   \
+  {                                                                           \
+    0.0f, 0.0f                                                                \
+  }
 
-#define GLM_IVEC2_ONE  ((ivec2)GLM_IVEC2_ONE_INIT)
+#define GLM_IVEC2_ONE ((ivec2)GLM_IVEC2_ONE_INIT)
 #define GLM_IVEC2_ZERO ((ivec2)GLM_IVEC2_ZERO_INIT)
 
 /*!
@@ -72,7 +78,8 @@ typedef int ivec2[2];
  */
 CGLM_INLINE
 void
-glm_ivec2(int * __restrict v, ivec2 dest) {
+glm_ivec2 (int *__restrict v, ivec2 dest)
+{
   dest[0] = v[0];
   dest[1] = v[1];
 }
@@ -85,7 +92,8 @@ glm_ivec2(int * __restrict v, ivec2 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec2_copy(ivec2 a, ivec2 dest) {
+glm_ivec2_copy (ivec2 a, ivec2 dest)
+{
   dest[0] = a[0];
   dest[1] = a[1];
 }
@@ -97,7 +105,8 @@ glm_ivec2_copy(ivec2 a, ivec2 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec2_zero(ivec2 v) {
+glm_ivec2_zero (ivec2 v)
+{
   v[0] = v[1] = 0.0f;
 }
 
@@ -108,7 +117,8 @@ glm_ivec2_zero(ivec2 v) {
  */
 CGLM_INLINE
 void
-glm_ivec2_one(ivec2 v) {
+glm_ivec2_one (ivec2 v)
+{
   v[0] = v[1] = 1.0f;
 }
 
@@ -122,7 +132,8 @@ glm_ivec2_one(ivec2 v) {
  */
 CGLM_INLINE
 int
-glm_ivec2_dot(ivec2 a, ivec2 b) {
+glm_ivec2_dot (ivec2 a, ivec2 b)
+{
   return a[0] * b[0] + a[1] * b[1];
 }
 
@@ -138,7 +149,8 @@ glm_ivec2_dot(ivec2 a, ivec2 b) {
  */
 CGLM_INLINE
 int
-glm_ivec2_cross(ivec2 a, ivec2 b) {
+glm_ivec2_cross (ivec2 a, ivec2 b)
+{
   /* just calculate the z-component */
   return a[0] * b[1] - a[1] * b[0];
 }
@@ -152,7 +164,8 @@ glm_ivec2_cross(ivec2 a, ivec2 b) {
  */
 CGLM_INLINE
 void
-glm_ivec2_add(ivec2 a, ivec2 b, ivec2 dest) {
+glm_ivec2_add (ivec2 a, ivec2 b, ivec2 dest)
+{
   dest[0] = a[0] + b[0];
   dest[1] = a[1] + b[1];
 }
@@ -166,7 +179,8 @@ glm_ivec2_add(ivec2 a, ivec2 b, ivec2 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec2_adds(ivec2 v, int s, ivec2 dest) {
+glm_ivec2_adds (ivec2 v, int s, ivec2 dest)
+{
   dest[0] = v[0] + s;
   dest[1] = v[1] + s;
 }
@@ -180,7 +194,8 @@ glm_ivec2_adds(ivec2 v, int s, ivec2 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec2_sub(ivec2 a, ivec2 b, ivec2 dest) {
+glm_ivec2_sub (ivec2 a, ivec2 b, ivec2 dest)
+{
   dest[0] = a[0] - b[0];
   dest[1] = a[1] - b[1];
 }
@@ -194,7 +209,8 @@ glm_ivec2_sub(ivec2 a, ivec2 b, ivec2 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec2_subs(ivec2 v, int s, ivec2 dest) {
+glm_ivec2_subs (ivec2 v, int s, ivec2 dest)
+{
   dest[0] = v[0] - s;
   dest[1] = v[1] - s;
 }
@@ -208,7 +224,8 @@ glm_ivec2_subs(ivec2 v, int s, ivec2 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec2_mul(ivec2 a, ivec2 b, ivec2 dest) {
+glm_ivec2_mul (ivec2 a, ivec2 b, ivec2 dest)
+{
   dest[0] = a[0] * b[0];
   dest[1] = a[1] * b[1];
 }
@@ -222,7 +239,8 @@ glm_ivec2_mul(ivec2 a, ivec2 b, ivec2 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec2_scale(ivec2 v, int s, ivec2 dest) {
+glm_ivec2_scale (ivec2 v, int s, ivec2 dest)
+{
   dest[0] = v[0] * s;
   dest[1] = v[1] * s;
 }
@@ -236,11 +254,11 @@ glm_ivec2_scale(ivec2 v, int s, ivec2 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec2_div(ivec2 a, ivec2 b, ivec2 dest) {
+glm_ivec2_div (ivec2 a, ivec2 b, ivec2 dest)
+{
   dest[0] = a[0] / b[0];
   dest[1] = a[1] / b[1];
 }
-
 
 /*!
  * @brief mod vector with another component-wise modulo: d = a % b
@@ -251,11 +269,11 @@ glm_ivec2_div(ivec2 a, ivec2 b, ivec2 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec2_mod(ivec2 a, ivec2 b, ivec2 dest) {
+glm_ivec2_mod (ivec2 a, ivec2 b, ivec2 dest)
+{
   dest[0] = a[0] % b[0];
   dest[1] = a[1] % b[1];
 }
-
 
 /*!
  * @brief div vector with scalar: d = v / s
@@ -266,32 +284,33 @@ glm_ivec2_mod(ivec2 a, ivec2 b, ivec2 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec2_divs(ivec2 v, int s, ivec2 dest) {
+glm_ivec2_divs (ivec2 v, int s, ivec2 dest)
+{
   dest[0] = v[0] / s;
   dest[1] = v[1] / s;
 }
 
 CGLM_INLINE
 void
-glm_ivec2_print(ivec2            vec,
-                FILE * __restrict ostream) {
+glm_ivec2_print (ivec2 vec, FILE *__restrict ostream)
+{
   int i;
 
 #define m 2
 
-  fprintf(ostream, "Vector (int%d):\n\t|", m);
+  fprintf (ostream, "Vector (int%d):\n\t|", m);
 
-  for (i = 0; i < m; i++) {
-    fprintf(ostream, "%d", vec[i]);
+  for (i = 0; i < m; i++)
+    {
+      fprintf (ostream, "%d", vec[i]);
 
-    if (i != m - 1)
-      fprintf(ostream, "\t");
-  }
+      if (i != m - 1)
+        fprintf (ostream, "\t");
+    }
 
-  fprintf(ostream, "|\n\n");
-  
+  fprintf (ostream, "|\n\n");
+
 #undef m
 }
-
 
 #endif /* cglm_ivec2_h */

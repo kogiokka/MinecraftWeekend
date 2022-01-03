@@ -3,8 +3,9 @@
 
 #include "../util/util.h"
 
-struct DebugComponent {
-    bool enabled;
+struct DebugComponent
+{
+  bool enabled;
 };
 
 #endif

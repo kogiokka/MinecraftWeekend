@@ -51,27 +51,34 @@
 #ifndef cglms_ivec2s_h
 #define cglms_ivec2s_h
 
-
 #include <cglm/common.h>
 #include <cglm/types-struct.h>
 #include <cglm/util.h>
 
 #include "ivec2.h"
 
-typedef union ivec2s {
+typedef union ivec2s
+{
   ivec2 raw;
 #if CGLM_USE_ANONYMOUS_STRUCT
-  struct {
+  struct
+  {
     int x;
     int y;
   };
 #endif
 } ivec2s;
 
-#define GLMS_IVEC2_ONE_INIT   {GLM_IVEC2_ONE_INIT}
-#define GLMS_IVEC2_ZERO_INIT  {GLM_IVEC2_ZERO_INIT}
+#define GLMS_IVEC2_ONE_INIT                                                   \
+  {                                                                           \
+    GLM_IVEC2_ONE_INIT                                                        \
+  }
+#define GLMS_IVEC2_ZERO_INIT                                                  \
+  {                                                                           \
+    GLM_IVEC2_ZERO_INIT                                                       \
+  }
 
-#define GLMS_IVEC2_ONE  ((ivec2s)GLMS_IVEC2_ONE_INIT)
+#define GLMS_IVEC2_ONE ((ivec2s)GLMS_IVEC2_ONE_INIT)
 #define GLMS_IVEC2_ZERO ((ivec2s)GLMS_IVEC2_ZERO_INIT)
 
 // /*!
@@ -97,12 +104,14 @@ typedef union ivec2s {
  */
 CGLM_INLINE
 void
-glms_ivec2_pack(ivec2s dst[], ivec2 src[], size_t len) {
+glms_ivec2_pack (ivec2s dst[], ivec2 src[], size_t len)
+{
   size_t i;
 
-  for (i = 0; i < len; i++) {
-    glm_ivec2_copy(src[i], dst[i].raw);
-  }
+  for (i = 0; i < len; i++)
+    {
+      glm_ivec2_copy (src[i], dst[i].raw);
+    }
 }
 
 /*!
@@ -114,12 +123,14 @@ glms_ivec2_pack(ivec2s dst[], ivec2 src[], size_t len) {
  */
 CGLM_INLINE
 void
-glms_ivec2_unpack(ivec2 dst[], ivec2s src[], size_t len) {
+glms_ivec2_unpack (ivec2 dst[], ivec2s src[], size_t len)
+{
   size_t i;
 
-  for (i = 0; i < len; i++) {
-    glm_ivec2_copy(src[i].raw, dst[i]);
-  }
+  for (i = 0; i < len; i++)
+    {
+      glm_ivec2_copy (src[i].raw, dst[i]);
+    }
 }
 
 /*!
@@ -129,9 +140,10 @@ glms_ivec2_unpack(ivec2 dst[], ivec2s src[], size_t len) {
  */
 CGLM_INLINE
 ivec2s
-glms_ivec2_zero(void) {
+glms_ivec2_zero (void)
+{
   ivec2s r;
-  glm_ivec2_zero(r.raw);
+  glm_ivec2_zero (r.raw);
   return r;
 }
 
@@ -142,9 +154,10 @@ glms_ivec2_zero(void) {
  */
 CGLM_INLINE
 ivec2s
-glms_ivec2_one(void) {
+glms_ivec2_one (void)
+{
   ivec2s r;
-  glm_ivec2_one(r.raw);
+  glm_ivec2_one (r.raw);
   return r;
 }
 
@@ -158,8 +171,9 @@ glms_ivec2_one(void) {
  */
 CGLM_INLINE
 int
-glms_ivec2_dot(ivec2s a, ivec2s b) {
-  return glm_ivec2_dot(a.raw, b.raw);
+glms_ivec2_dot (ivec2s a, ivec2s b)
+{
+  return glm_ivec2_dot (a.raw, b.raw);
 }
 
 /*!
@@ -174,8 +188,9 @@ glms_ivec2_dot(ivec2s a, ivec2s b) {
  */
 CGLM_INLINE
 int
-glms_ivec2_cross(ivec2s a, ivec2s b) {
-  return glm_ivec2_cross(a.raw, b.raw);
+glms_ivec2_cross (ivec2s a, ivec2s b)
+{
+  return glm_ivec2_cross (a.raw, b.raw);
 }
 
 /*!
@@ -187,9 +202,10 @@ glms_ivec2_cross(ivec2s a, ivec2s b) {
  */
 CGLM_INLINE
 ivec2s
-glms_ivec2_add(ivec2s a, ivec2s b) {
+glms_ivec2_add (ivec2s a, ivec2s b)
+{
   ivec2s r;
-  glm_ivec2_add(a.raw, b.raw, r.raw);
+  glm_ivec2_add (a.raw, b.raw, r.raw);
   return r;
 }
 
@@ -202,9 +218,10 @@ glms_ivec2_add(ivec2s a, ivec2s b) {
  */
 CGLM_INLINE
 ivec2s
-glms_ivec2_adds(ivec2s a, int s) {
+glms_ivec2_adds (ivec2s a, int s)
+{
   ivec2s r;
-  glm_ivec2_adds(a.raw, s, r.raw);
+  glm_ivec2_adds (a.raw, s, r.raw);
   return r;
 }
 
@@ -217,9 +234,10 @@ glms_ivec2_adds(ivec2s a, int s) {
  */
 CGLM_INLINE
 ivec2s
-glms_ivec2_sub(ivec2s a, ivec2s b) {
+glms_ivec2_sub (ivec2s a, ivec2s b)
+{
   ivec2s r;
-  glm_ivec2_sub(a.raw, b.raw, r.raw);
+  glm_ivec2_sub (a.raw, b.raw, r.raw);
   return r;
 }
 
@@ -232,9 +250,10 @@ glms_ivec2_sub(ivec2s a, ivec2s b) {
  */
 CGLM_INLINE
 ivec2s
-glms_ivec2_subs(ivec2s a, int s) {
+glms_ivec2_subs (ivec2s a, int s)
+{
   ivec2s r;
-  glm_ivec2_subs(a.raw, s, r.raw);
+  glm_ivec2_subs (a.raw, s, r.raw);
   return r;
 }
 
@@ -247,9 +266,10 @@ glms_ivec2_subs(ivec2s a, int s) {
  */
 CGLM_INLINE
 ivec2s
-glms_ivec2_mul(ivec2s a, ivec2s b) {
+glms_ivec2_mul (ivec2s a, ivec2s b)
+{
   ivec2s r;
-  glm_ivec2_mul(a.raw, b.raw, r.raw);
+  glm_ivec2_mul (a.raw, b.raw, r.raw);
   return r;
 }
 
@@ -262,9 +282,10 @@ glms_ivec2_mul(ivec2s a, ivec2s b) {
  */
 CGLM_INLINE
 ivec2s
-glms_ivec2_scale(ivec2s v, int s) {
+glms_ivec2_scale (ivec2s v, int s)
+{
   ivec2s r;
-  glm_ivec2_scale(v.raw, s, r.raw);
+  glm_ivec2_scale (v.raw, s, r.raw);
   return r;
 }
 
@@ -277,12 +298,12 @@ glms_ivec2_scale(ivec2s v, int s) {
  */
 CGLM_INLINE
 ivec2s
-glms_ivec2_div(ivec2s a, ivec2s b) {
+glms_ivec2_div (ivec2s a, ivec2s b)
+{
   ivec2s r;
-  glm_ivec2_div(a.raw, b.raw, r.raw);
+  glm_ivec2_div (a.raw, b.raw, r.raw);
   return r;
 }
-
 
 /*!
  * @brief mod vector with another component-wise modulo: d = a % b
@@ -293,9 +314,10 @@ glms_ivec2_div(ivec2s a, ivec2s b) {
  */
 CGLM_INLINE
 ivec2s
-glms_ivec2_mod(ivec2s a, ivec2s b) {
+glms_ivec2_mod (ivec2s a, ivec2s b)
+{
   ivec2s r;
-  glm_ivec2_mod(a.raw, b.raw, r.raw);
+  glm_ivec2_mod (a.raw, b.raw, r.raw);
   return r;
 }
 
@@ -308,17 +330,18 @@ glms_ivec2_mod(ivec2s a, ivec2s b) {
  */
 CGLM_INLINE
 ivec2s
-glms_ivec2_divs(ivec2s a, int s) {
+glms_ivec2_divs (ivec2s a, int s)
+{
   ivec2s r;
-  glm_ivec2_divs(a.raw, s, r.raw);
+  glm_ivec2_divs (a.raw, s, r.raw);
   return r;
 }
 
 CGLM_INLINE
 void
-glms_ivec2_print(ivec2s            vec,
-                 FILE * __restrict ostream) {
-  glm_ivec2_print(vec.raw, ostream);
+glms_ivec2_print (ivec2s vec, FILE *__restrict ostream)
+{
+  glm_ivec2_print (vec.raw, ostream);
 }
 
 #endif

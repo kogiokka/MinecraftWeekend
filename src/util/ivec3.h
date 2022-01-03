@@ -69,11 +69,12 @@
    CGLM_INLINE void  glm_ivec3_mixc(ivec3 from, ivec3 to, int t, ivec3 dest);
    CGLM_INLINE void  glm_ivec3_step_uni(int edge, ivec3 x, ivec3 dest);
    CGLM_INLINE void  glm_ivec3_step(ivec3 edge, ivec3 x, ivec3 dest);
-   CGLM_INLINE void  glm_ivec3_smoothstep_uni(int edge0, int edge1, ivec3 x, ivec3 dest);
-   CGLM_INLINE void  glm_ivec3_smoothstep(ivec3 edge0, ivec3 edge1, ivec3 x, ivec3 dest);
-   CGLM_INLINE void  glm_ivec3_smoothinterp(ivec3 from, ivec3 to, int t, ivec3 dest);
-   CGLM_INLINE void  glm_ivec3_smoothinterpc(ivec3 from, ivec3 to, int t, ivec3 dest);
-   CGLM_INLINE void  glm_ivec3_swizzle(ivec3 v, int mask, ivec3 dest);
+   CGLM_INLINE void  glm_ivec3_smoothstep_uni(int edge0, int edge1, ivec3 x,
+ ivec3 dest); CGLM_INLINE void  glm_ivec3_smoothstep(ivec3 edge0, ivec3 edge1,
+ ivec3 x, ivec3 dest); CGLM_INLINE void  glm_ivec3_smoothinterp(ivec3 from,
+ ivec3 to, int t, ivec3 dest); CGLM_INLINE void  glm_ivec3_smoothinterpc(ivec3
+ from, ivec3 to, int t, ivec3 dest); CGLM_INLINE void  glm_ivec3_swizzle(ivec3
+ v, int mask, ivec3 dest);
 
  Convenient:
    CGLM_INLINE void  glm_cross(ivec3 a, ivec3 b, ivec3 d);
@@ -97,28 +98,34 @@
 #include "cglm/util.h"
 
 /* DEPRECATED! use _copy, _ucopy versions */
-#define glm_ivec3_dup(v, dest)         glm_ivec3_copy(v, dest)
-#define glm_ivec3_flipsign(v)          glm_ivec3_negate(v)
-#define glm_ivec3_flipsign_to(v, dest) glm_ivec3_negate_to(v, dest)
-#define glm_ivec3_inv(v)               glm_ivec3_negate(v)
-#define glm_ivec3_inv_to(v, dest)      glm_ivec3_negate_to(v, dest)
-#define glm_ivec3_mulv(a, b, d)        glm_ivec3_mul(a, b, d)
+#define glm_ivec3_dup(v, dest) glm_ivec3_copy (v, dest)
+#define glm_ivec3_flipsign(v) glm_ivec3_negate (v)
+#define glm_ivec3_flipsign_to(v, dest) glm_ivec3_negate_to (v, dest)
+#define glm_ivec3_inv(v) glm_ivec3_negate (v)
+#define glm_ivec3_inv_to(v, dest) glm_ivec3_negate_to (v, dest)
+#define glm_ivec3_mulv(a, b, d) glm_ivec3_mul (a, b, d)
 
-#define GLM_IVEC3_ONE_INIT   {1, 1, 1}
-#define GLM_IVEC3_ZERO_INIT  {0, 0, 0}
+#define GLM_IVEC3_ONE_INIT                                                    \
+  {                                                                           \
+    1, 1, 1                                                                   \
+  }
+#define GLM_IVEC3_ZERO_INIT                                                   \
+  {                                                                           \
+    0, 0, 0                                                                   \
+  }
 
-#define GLM_IVEC3_ONE  ((ivec3)GLM_IVEC3_ONE_INIT)
+#define GLM_IVEC3_ONE ((ivec3)GLM_IVEC3_ONE_INIT)
 #define GLM_IVEC3_ZERO ((ivec3)GLM_IVEC3_ZERO_INIT)
 
-#define GLM_IVEC3_YUP       ((ivec3){0,  1,  0})
-#define GLM_IVEC3_ZUP       ((ivec3){0,  0,  1})
-#define GLM_IVEC3_XUP       ((ivec3){1,  0,  0})
-#define GLM_IVEC3_FORWARD   ((ivec3){0,  0, -1})
+#define GLM_IVEC3_YUP ((ivec3){ 0, 1, 0 })
+#define GLM_IVEC3_ZUP ((ivec3){ 0, 0, 1 })
+#define GLM_IVEC3_XUP ((ivec3){ 1, 0, 0 })
+#define GLM_IVEC3_FORWARD ((ivec3){ 0, 0, -1 })
 
-#define GLM_IVEC3_XXX GLM_SHUFFLE3(0, 0, 0)
-#define GLM_IVEC3_YYY GLM_SHUFFLE3(1, 1, 1)
-#define GLM_IVEC3_ZZZ GLM_SHUFFLE3(2, 2, 2)
-#define GLM_IVEC3_ZYX GLM_SHUFFLE3(0, 1, 2)
+#define GLM_IVEC3_XXX GLM_SHUFFLE3 (0, 0, 0)
+#define GLM_IVEC3_YYY GLM_SHUFFLE3 (1, 1, 1)
+#define GLM_IVEC3_ZZZ GLM_SHUFFLE3 (2, 2, 2)
+#define GLM_IVEC3_ZYX GLM_SHUFFLE3 (0, 1, 2)
 
 /*!
  * @brief init ivec3 using vec4
@@ -128,7 +135,8 @@
  */
 CGLM_INLINE
 void
-glm_ivec3(vec4 v4, ivec3 dest) {
+glm_ivec3 (vec4 v4, ivec3 dest)
+{
   dest[0] = v4[0];
   dest[1] = v4[1];
   dest[2] = v4[2];
@@ -142,7 +150,8 @@ glm_ivec3(vec4 v4, ivec3 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec3_copy(ivec3 a, ivec3 dest) {
+glm_ivec3_copy (ivec3 a, ivec3 dest)
+{
   dest[0] = a[0];
   dest[1] = a[1];
   dest[2] = a[2];
@@ -155,7 +164,8 @@ glm_ivec3_copy(ivec3 a, ivec3 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec3_zero(ivec3 v) {
+glm_ivec3_zero (ivec3 v)
+{
   v[0] = v[1] = v[2] = 0;
 }
 
@@ -166,7 +176,8 @@ glm_ivec3_zero(ivec3 v) {
  */
 CGLM_INLINE
 void
-glm_ivec3_one(ivec3 v) {
+glm_ivec3_one (ivec3 v)
+{
   v[0] = v[1] = v[2] = 1;
 }
 
@@ -180,7 +191,8 @@ glm_ivec3_one(ivec3 v) {
  */
 CGLM_INLINE
 int
-glm_ivec3_dot(ivec3 a, ivec3 b) {
+glm_ivec3_dot (ivec3 a, ivec3 b)
+{
   return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 }
 
@@ -197,8 +209,9 @@ glm_ivec3_dot(ivec3 a, ivec3 b) {
  */
 CGLM_INLINE
 int
-glm_ivec3_norm2(ivec3 v) {
-  return glm_ivec3_dot(v, v);
+glm_ivec3_norm2 (ivec3 v)
+{
+  return glm_ivec3_dot (v, v);
 }
 
 /*!
@@ -211,8 +224,9 @@ glm_ivec3_norm2(ivec3 v) {
  */
 CGLM_INLINE
 int
-glm_ivec3_norm(ivec3 v) {
-  return (int) sqrtf(glm_ivec3_norm2(v));
+glm_ivec3_norm (ivec3 v)
+{
+  return (int)sqrtf (glm_ivec3_norm2 (v));
 }
 
 /*!
@@ -224,7 +238,8 @@ glm_ivec3_norm(ivec3 v) {
  */
 CGLM_INLINE
 void
-glm_ivec3_add(ivec3 a, ivec3 b, ivec3 dest) {
+glm_ivec3_add (ivec3 a, ivec3 b, ivec3 dest)
+{
   dest[0] = a[0] + b[0];
   dest[1] = a[1] + b[1];
   dest[2] = a[2] + b[2];
@@ -239,7 +254,8 @@ glm_ivec3_add(ivec3 a, ivec3 b, ivec3 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec3_adds(ivec3 v, int s, ivec3 dest) {
+glm_ivec3_adds (ivec3 v, int s, ivec3 dest)
+{
   dest[0] = v[0] + s;
   dest[1] = v[1] + s;
   dest[2] = v[2] + s;
@@ -254,7 +270,8 @@ glm_ivec3_adds(ivec3 v, int s, ivec3 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec3_sub(ivec3 a, ivec3 b, ivec3 dest) {
+glm_ivec3_sub (ivec3 a, ivec3 b, ivec3 dest)
+{
   dest[0] = a[0] - b[0];
   dest[1] = a[1] - b[1];
   dest[2] = a[2] - b[2];
@@ -269,7 +286,8 @@ glm_ivec3_sub(ivec3 a, ivec3 b, ivec3 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec3_subs(ivec3 v, int s, ivec3 dest) {
+glm_ivec3_subs (ivec3 v, int s, ivec3 dest)
+{
   dest[0] = v[0] - s;
   dest[1] = v[1] - s;
   dest[2] = v[2] - s;
@@ -284,7 +302,8 @@ glm_ivec3_subs(ivec3 v, int s, ivec3 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec3_mul(ivec3 a, ivec3 b, ivec3 dest) {
+glm_ivec3_mul (ivec3 a, ivec3 b, ivec3 dest)
+{
   dest[0] = a[0] * b[0];
   dest[1] = a[1] * b[1];
   dest[2] = a[2] * b[2];
@@ -299,7 +318,8 @@ glm_ivec3_mul(ivec3 a, ivec3 b, ivec3 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec3_scale(ivec3 v, int s, ivec3 dest) {
+glm_ivec3_scale (ivec3 v, int s, ivec3 dest)
+{
   dest[0] = v[0] * s;
   dest[1] = v[1] * s;
   dest[2] = v[2] * s;
@@ -314,7 +334,8 @@ glm_ivec3_scale(ivec3 v, int s, ivec3 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec3_div(ivec3 a, ivec3 b, ivec3 dest) {
+glm_ivec3_div (ivec3 a, ivec3 b, ivec3 dest)
+{
   dest[0] = a[0] / b[0];
   dest[1] = a[1] / b[1];
   dest[2] = a[2] / b[2];
@@ -322,12 +343,12 @@ glm_ivec3_div(ivec3 a, ivec3 b, ivec3 dest) {
 
 CGLM_INLINE
 void
-glm_ivec3_mod(ivec3 a, ivec3 b, ivec3 dest) {
+glm_ivec3_mod (ivec3 a, ivec3 b, ivec3 dest)
+{
   dest[0] = a[0] % b[0];
   dest[1] = a[1] % b[1];
   dest[2] = a[2] % b[2];
 }
-
 
 /*!
  * @brief div vector with scalar: d = v / s
@@ -338,7 +359,8 @@ glm_ivec3_mod(ivec3 a, ivec3 b, ivec3 dest) {
  */
 CGLM_INLINE
 void
-glm_ivec3_divs(ivec3 v, int s, ivec3 dest) {
+glm_ivec3_divs (ivec3 v, int s, ivec3 dest)
+{
   dest[0] = v[0] / s;
   dest[1] = v[1] / s;
   dest[2] = v[2] / s;
