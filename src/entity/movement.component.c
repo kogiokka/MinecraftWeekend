@@ -1,4 +1,4 @@
-#include "c_movement.h"
+#include "movement.component.h"
 
 #include "../world/world.h"
 #include "ecs.h"
@@ -140,7 +140,7 @@ tick (struct MovementComponent *c_movement, struct Entity entity)
 }
 
 void
-c_movement_init (struct ECS *ecs)
+comp_movement_init (struct ECS *ecs)
 {
   ecs_register (C_MOVEMENT, struct MovementComponent, ecs,
                 ((union ECSSystem){ .init = NULL,

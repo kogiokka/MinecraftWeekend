@@ -1,4 +1,4 @@
-#include "c_blocklook.h"
+#include "blocklook.component.h"
 
 #include "../gfx/renderer.h"
 #include "../state.h"
@@ -55,7 +55,7 @@ render (struct BlockLookComponent *c_blocklook, struct Entity entity)
 }
 
 void
-c_blocklook_init (struct ECS *ecs)
+comp_blocklook_init (struct ECS *ecs)
 {
   ecs_register (C_BLOCKLOOK, struct BlockLookComponent, ecs,
                 ((union ECSSystem){ .init = NULL,

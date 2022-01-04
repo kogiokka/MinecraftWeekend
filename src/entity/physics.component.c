@@ -1,4 +1,4 @@
-#include "c_physics.h"
+#include "physics.component.h"
 
 #include "../world/world.h"
 #include "ecs.h"
@@ -173,7 +173,7 @@ physics_collides (struct PhysicsComponent *c_physics, AABB aabb)
 }
 
 void
-c_physics_init (struct ECS *ecs)
+comp_physics_init (struct ECS *ecs)
 {
   ecs_register (C_PHYSICS, struct PhysicsComponent, ecs,
                 ((union ECSSystem){ .init = NULL,

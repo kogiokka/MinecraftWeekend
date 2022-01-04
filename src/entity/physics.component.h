@@ -1,5 +1,5 @@
-#ifndef C_PHYSICS_H
-#define C_PHYSICS_H
+#ifndef COMP_PHYSICS_H
+#define COMP_PHYSICS_H
 
 #include "../util/util.h"
 #include "ecstypes.h"

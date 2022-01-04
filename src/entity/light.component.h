@@ -1,5 +1,5 @@
-#ifndef C_LIGHT_H
-#define C_LIGHT_H
+#ifndef COMP_LIGHT_H
+#define COMP_LIGHT_H
 
 #include "../util/util.h"
 #include "../world/light.h"

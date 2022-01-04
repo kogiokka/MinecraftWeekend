@@ -1,5 +1,5 @@
-#ifndef C_BLOCKLOOK_H
-#define C_BLOCKLOOK_H
+#ifndef COMP_BLOCKLOOK_H
+#define COMP_BLOCKLOOK_H
 
 #include "../util/util.h"
 

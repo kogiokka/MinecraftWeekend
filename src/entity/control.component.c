@@ -1,4 +1,4 @@
-#include "c_control.h"
+#include "control.component.h"
 
 #include "../state.h"
 #include "../ui/ui.h"
@@ -83,7 +83,7 @@ tick (struct ControlComponent *c_control, struct Entity entity)
 }
 
 void
-c_control_init (struct ECS *ecs)
+comp_control_init (struct ECS *ecs)
 {
   ecs_register (C_CONTROL, struct ControlComponent, ecs,
                 ((union ECSSystem){ .init = NULL,

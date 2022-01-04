@@ -1,5 +1,5 @@
-#ifndef C_CAMERA_H
-#define C_CAMERA_H
+#ifndef COMP_CAMERA_H
+#define COMP_CAMERA_H
 
 #include "../util/camera.h"
 #include "ecs.h"

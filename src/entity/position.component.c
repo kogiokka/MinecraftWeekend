@@ -1,4 +1,4 @@
-#include "c_position.h"
+#include "position.component.h"
 
 #include "../world/world.h"
 #include "ecs.h"
@@ -31,7 +31,7 @@ tick (struct PositionComponent *c_position, struct Entity entity)
 }
 
 void
-c_position_init (struct ECS *ecs)
+comp_position_init (struct ECS *ecs)
 {
   ecs_register (C_POSITION, struct PositionComponent, ecs,
                 ((union ECSSystem){ .init = NULL,

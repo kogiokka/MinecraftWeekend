@@ -1,4 +1,4 @@
-#include "c_debug.h"
+#include "debug.component.h"
 
 #include "ecs.h"
 
@@ -8,7 +8,7 @@ render (struct DebugComponent *c_debug, struct Entity entity)
 }
 
 void
-c_debug_init (struct ECS *ecs)
+comp_debug_init (struct ECS *ecs)
 {
   ecs_register (C_DEBUG, struct DebugComponent, ecs,
                 ((union ECSSystem){ .init = NULL,

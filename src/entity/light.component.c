@@ -1,4 +1,4 @@
-#include "c_light.h"
+#include "light.component.h"
 
 #include "../world/light.h"
 #include "../world/world.h"
@@ -39,7 +39,7 @@ tick (struct LightComponent *c_light, struct Entity entity)
 }
 
 void
-c_light_init (struct ECS *ecs)
+comp_light_init (struct ECS *ecs)
 {
   ecs_register (C_LIGHT, struct LightComponent, ecs,
                 ((union ECSSystem){ .init = NULL,

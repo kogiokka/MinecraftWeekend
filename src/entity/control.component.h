@@ -1,5 +1,5 @@
-#ifndef C_CONTROL_H
-#define C_CONTROL_H
+#ifndef COMP_CONTROL_H
+#define COMP_CONTROL_H
 
 #include "../util/util.h"
 

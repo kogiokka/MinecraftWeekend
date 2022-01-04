@@ -1,5 +1,5 @@
-#ifndef POSITION_H
-#define POSITION_H
+#ifndef COMP_POSITION_H
+#define COMP_POSITION_H
 
 #include "../util/util.h"
 

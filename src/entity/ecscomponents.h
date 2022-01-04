@@ -1,14 +1,14 @@
 #ifndef ECSCOMPONENTS_H
 #define ECSCOMPONENTS_H
 
-#include "c_blocklook.h"
-#include "c_camera.h"
-#include "c_control.h"
-#include "c_debug.h"
-#include "c_light.h"
-#include "c_movement.h"
-#include "c_physics.h"
-#include "c_position.h"
+#include "blocklook.component.h"
+#include "camera.component.h"
+#include "control.component.h"
+#include "debug.component.h"
+#include "light.component.h"
+#include "movement.component.h"
+#include "physics.component.h"
+#include "position.component.h"
 
 #define _ECS_DECL_COMPONENT(_name)                                            \
   extern void _name##_init ();                                                \
@@ -17,14 +17,14 @@
 static inline void
 _ecs_init_internal (struct ECS *ecs)
 {
-  _ECS_DECL_COMPONENT (c_position);
-  _ECS_DECL_COMPONENT (c_camera);
-  _ECS_DECL_COMPONENT (c_control);
-  _ECS_DECL_COMPONENT (c_physics);
-  _ECS_DECL_COMPONENT (c_movement);
-  _ECS_DECL_COMPONENT (c_blocklook);
-  _ECS_DECL_COMPONENT (c_debug);
-  _ECS_DECL_COMPONENT (c_light);
+  _ECS_DECL_COMPONENT (comp_position);
+  _ECS_DECL_COMPONENT (comp_camera);
+  _ECS_DECL_COMPONENT (comp_control);
+  _ECS_DECL_COMPONENT (comp_physics);
+  _ECS_DECL_COMPONENT (comp_movement);
+  _ECS_DECL_COMPONENT (comp_blocklook);
+  _ECS_DECL_COMPONENT (comp_debug);
+  _ECS_DECL_COMPONENT (comp_light);
 }
 
 #define ECSCOMPONENT_LAST C_LIGHT

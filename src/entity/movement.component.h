@@ -1,5 +1,5 @@
-#ifndef C_MOVEMENT_H
-#define C_MOVEMENT_H
+#ifndef COMP_MOVEMENT_H
+#define COMP_MOVEMENT_H
 
 #include "../util/util.h"
 #include "ecstypes.h"

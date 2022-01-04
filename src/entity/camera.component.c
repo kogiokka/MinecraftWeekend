@@ -1,7 +1,7 @@
-#include "c_camera.h"
+#include "camera.component.h"
 
-#include "c_position.h"
 #include "ecs.h"
+#include "position.component.h"
 
 static void
 init (struct CameraComponent *c_camera, struct Entity entity)
@@ -22,7 +22,7 @@ update (struct CameraComponent *c_camera, struct Entity entity)
 }
 
 void
-c_camera_init (struct ECS *ecs)
+comp_camera_init (struct ECS *ecs)
 {
   ecs_register (C_CAMERA, struct CameraComponent, ecs,
                 ((union ECSSystem){ .init = (ECSSubscriber)init,

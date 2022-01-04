@@ -1,5 +1,5 @@
-#ifndef C_DEBUG_H
-#define C_DEBUG_H
+#ifndef COMP_DEBUG_H
+#define COMP_DEBUG_H
 
 #include "../util/util.h"
 
