@@ -1,6 +1,6 @@
 include(FetchContent)
 
-set(glfw_SOURCE_DIR "${CMAKE_SOURCE_DIR}/lib/glfw")
+set(glfw_SOURCE_DIR "${CMAKE_SOURCE_DIR}/external/glfw")
 
 FetchContent_Declare(
     glfw

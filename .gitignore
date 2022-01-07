@@ -3,8 +3,8 @@ bin/game
 [Oo]ut
 
 # CMake FetchContent SOURCE_DIR
-lib/cglm
-lib/glfw
+external/cglm
+external/glfw
 
 # IDE
 *.kdev4

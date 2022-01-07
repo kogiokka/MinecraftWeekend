@@ -46,15 +46,15 @@ message(STATUS)
 
 target_include_directories(game PRIVATE "")
 
-target_include_directories(glad PUBLIC "lib/glad/include")
-target_include_directories(stb_image PUBLIC "lib/stb")
-target_include_directories(noise1234 PUBLIC "lib/noise")
+target_include_directories(glad PUBLIC "external/glad/include")
+target_include_directories(stb_image PUBLIC "external/stb")
+target_include_directories(noise1234 PUBLIC "external/noise")
 
 file(GLOB_RECURSE SourceFiles CONFIGURE_DEPENDS "src/*.c")
 target_sources(game PRIVATE ${SourceFiles})
-target_sources(glad PRIVATE "lib/glad/src/glad.c")
-target_sources(stb_image PRIVATE "lib/stb/stb_image.c")
-target_sources(noise1234 PRIVATE "lib/noise/noise1234.c")
+target_sources(glad PRIVATE "external/glad/src/glad.c")
+target_sources(stb_image PRIVATE "external/stb/stb_image.c")
+target_sources(noise1234 PRIVATE "external/noise/noise1234.c")
 
 target_link_libraries(game PRIVATE
     cglm

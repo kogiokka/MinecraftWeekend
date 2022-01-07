@@ -1,6 +1,6 @@
 include(FetchContent)
 
-set(cglm_SOURCE_DIR "${CMAKE_SOURCE_DIR}/lib/cglm")
+set(cglm_SOURCE_DIR "${CMAKE_SOURCE_DIR}/external/cglm")
 
 FetchContent_Declare(
     cglm
